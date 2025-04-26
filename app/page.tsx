@@ -41,6 +41,8 @@ export default function Home() {
         >
           <p>Basado en los principios de la Comunicación No Violenta (CNV)</p>
           <div className="pt-4 border-t border-gray-200">
+<p className="font-medium">Version 2.0 Mujeres</p>
+<p className="font-medium">  </p>
             <p className="font-medium">Desarrollado por Marlon Ortiz</p>
             <a 
               href="mailto:marlon.moe24@gmail.com"
