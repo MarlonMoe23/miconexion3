@@ -209,7 +209,7 @@ function RequestStep({
     <Card className="p-6">
       <h2 className="text-2xl font-bold mb-4">Petición</h2>
       <p className="text-gray-600 mb-4">
-        ¿Qué acciones específicas quisiera que se realizaran ahora? Identifica qué
+        ¿Qué acciones o estrategias específicas quisiera que se realizaran ahora? Identifica qué
         podrías pedirte a ti mismo o a otros para cuidar de tu necesidad.
       </p>
 
