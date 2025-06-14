@@ -63,7 +63,7 @@ function ObservationStep({
         qué viste, escuchaste o recordaste que activó tu reacción.
       </p>
       <Textarea
-        placeholder="Ejemplo: Cuando veo que mi colega no responde a mi mensaje..."
+        placeholder="Ejemplo: Cuando veo que mi amiga no responde a mi mensaje..."
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="min-h-[150px]"

@@ -1,22 +1,5 @@
 export const needs = [
   {
-    category: "Subsistencia",
-    items: [
-      "Aire",
-      "Alimentación",
-      "Agua",
-      "Descanso",
-      "Movimiento/ejercicio",
-      "Sueño",
-      "Expresión sexual",
-      "Abrigo",
-      "Vivienda",
-      "Salud física",
-      "Seguridad física",
-      "Contacto físico"
-    ]
-  },
-  {
     category: "Seguridad",
     items: [
       "Protección",
@@ -28,7 +11,16 @@ export const needs = [
       "Predictibilidad"
     ]
   },
-  {
+ 
+{
+    category: "Relacionales",
+    items: [
+      "Ser Querido",
+      "Ser Respetado"
+    ]
+  },
+
+ {
     category: "Amor",
     items: [
       "Afecto",
@@ -159,6 +151,23 @@ export const needs = [
       "Confianza",
       "Autoestima",
       "Autocuidado"
+    ]
+  },
+{
+    category: "Subsistencia",
+    items: [
+      "Aire",
+      "Alimentación",
+      "Agua",
+      "Descanso",
+      "Movimiento/ejercicio",
+      "Sueño",
+      "Expresión sexual",
+      "Abrigo",
+      "Vivienda",
+      "Salud física",
+      "Seguridad física",
+      "Contacto físico"
     ]
   }
 ];

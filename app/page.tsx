@@ -17,10 +17,15 @@ export default function Home() {
         <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
           Mi Conexión Interna
         </h1>
-        
+     
+        <p className="italic text-gray-600 mb-4">
+          “¿Qué parte dentro de ti quiere ser escuchada hoy?”
+        </p>
+
+   
         <Card className="p-6 mb-8 bg-white/80 backdrop-blur-sm">
           <p className="text-lg text-gray-700 mb-6">
-            Un espacio seguro para explorar tus sentimientos y necesidades a través de la Comunicación No Violenta.
+             Un espacio seguro para reconectar contigo misma, escuchando tus sentimientos y necesidades con compasión.
           </p>
           
           <Link href="/dashboard">
@@ -28,7 +33,7 @@ export default function Home() {
               className="w-full md:w-auto button-hover bg-gradient-to-r from-blue-500 to-purple-500 text-white"
               size="lg"
             >
-              Comenzar Sesión de Conexión
+              Iniciar mi momento de conexión
             </Button>
           </Link>
         </Card>
@@ -44,12 +49,7 @@ export default function Home() {
 <p className="font-medium">Version 2.0 Mujeres</p>
 <p className="font-medium">  </p>
             <p className="font-medium">Desarrollado por Marlon Ortiz</p>
-            <a 
-              href="mailto:marlon.moe24@gmail.com"
-              className="text-blue-600 hover:text-blue-800 transition-colors"
-            >
-              marlon.moe24@gmail.com
-            </a>
+            
           </div>
         </motion.div>
       </motion.div>
