@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-import PWARegister from "@/components/pwa-register";
 
 export default function Home() {
   return (
@@ -20,9 +19,10 @@ export default function Home() {
         </h1>
      
         <p className="italic text-gray-600 mb-4">
-          "¿Qué parte dentro de ti quiere ser escuchada hoy?"
+          “¿Qué parte dentro de ti quiere ser escuchada hoy?”
         </p>
 
+   
         <Card className="p-6 mb-8 bg-white/80 backdrop-blur-sm">
           <p className="text-lg text-gray-700 mb-6">
              Un espacio seguro para reconectar contigo misma, escuchando tus sentimientos y necesidades con compasión.
@@ -46,13 +46,13 @@ export default function Home() {
         >
           <p>Basado en los principios de la Comunicación No Violenta (CNV)</p>
           <div className="pt-4 border-t border-gray-200">
-            <p className="font-medium">Version 2.0 Mujeres</p>
+<p className="font-medium">Version 2.0 Mujeres</p>
+<p className="font-medium">  </p>
             <p className="font-medium">Desarrollado por Marlon Ortiz</p>
+            
           </div>
         </motion.div>
       </motion.div>
-      
-      <PWARegister />
     </main>
   );
 }
