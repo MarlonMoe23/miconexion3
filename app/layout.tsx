@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mi Conexión Interna",
-  description: "Un espacio seguro para explorar tus sentimientos y necesidades basado en CNV",
+  description: "Un espacio seguro para explorar tus sentimientos y necesidades",
   generator: "Next.js",
   manifest: "/manifest.json",
   keywords: [
