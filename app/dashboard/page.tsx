@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Search, X } from "lucide-react";
 import { feelings } from "@/lib/feelings";
 import { needs } from "@/lib/needs";
 
@@ -79,9 +80,43 @@ function FeelingsStep({
   selectedFeelings: string[];
   onChange: (feelings: string[]) => void;
 }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredFeelings, setFilteredFeelings] = useState(feelings);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  // Función para filtrar sentimientos basada en el término de búsqueda
+  useEffect(() => {
+    if (!searchTerm.trim()) {
+      setFilteredFeelings(feelings);
+      return;
+    }
+
+    const filtered: typeof feelings = {};
+    const searchLower = searchTerm.toLowerCase();
+
+    Object.entries(feelings).forEach(([mainCategory, categories]) => {
+      const filteredCategories: Record<string, string[]> = {};
+      
+      Object.entries(categories as Record<string, string[]>).forEach(([category, feelingsList]) => {
+        const matchingFeelings = feelingsList.filter(feeling =>
+          feeling.toLowerCase().includes(searchLower)
+        );
+        
+        if (matchingFeelings.length > 0) {
+          filteredCategories[category] = matchingFeelings;
+        }
+      });
+
+      if (Object.keys(filteredCategories).length > 0) {
+        filtered[mainCategory] = filteredCategories;
+      }
+    });
+
+    setFilteredFeelings(filtered);
+  }, [searchTerm]);
 
   const toggleFeeling = (feeling: string) => {
     if (selectedFeelings.includes(feeling)) {
@@ -91,41 +126,112 @@ function FeelingsStep({
     }
   };
 
+  const clearSearch = () => {
+    setSearchTerm("");
+  };
+
+  // Contar total de sentimientos mostrados
+  const totalFilteredFeelings = Object.values(filteredFeelings).reduce((total, categories) => {
+    return total + Object.values(categories as Record<string, string[]>).reduce((catTotal, feelingsList) => {
+      return catTotal + feelingsList.length;
+    }, 0);
+  }, 0);
+
   return (
     <Card className="p-6">
       <h2 className="text-2xl font-bold mb-4">Sentimientos</h2>
-      <p className="text-gray-600 mb-4">
+      <p className="text-gray-600 mb-6">
         ¿Qué emociones o sentimientos son estimulados en ti? Reconoce y nombra
         cómo te sientes, sin juzgarte.
       </p>
 
-      {Object.entries(feelings).map(([mainCategory, categories]) => (
-        <div key={mainCategory} className="mb-8">
-          <h3 className="text-xl font-semibold mb-4">{mainCategory}</h3>
-          {Object.entries(categories as Record<string, string[]>).map(([category, feelingsList]) => (
-            <div key={category} className="feeling-category">
-              <h4 className="text-lg font-medium mb-3">{category}</h4>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {feelingsList.map((feeling) => (
-                  <div
-                    key={feeling}
-                    className={`cursor-pointer px-4 py-2 rounded-full text-center text-sm font-medium transition-all duration-200 ease-in-out transform ${
-    selectedFeelings.includes(feeling)
-      ? "bg-blue-100 text-blue-800 shadow-md border border-blue-400 scale-105"
-      : "bg-white text-gray-700 shadow-sm hover:shadow-md hover:scale-105 border border-gray-300"
- 
-                    }`}
-                    onClick={() => toggleFeeling(feeling)}
-                  >
-                    
-                    <span className="ml-2">{feeling}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+      {/* Barra de búsqueda */}
+      <div className="mb-6 relative">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Input
+            type="text"
+            placeholder="Buscar sentimientos... (ej: tristeza, alegría, frustración)"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10 pr-10 py-3 text-base"
+          />
+          {searchTerm && (
+            <button
+              onClick={clearSearch}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
         </div>
-      ))}
+        
+        {searchTerm && (
+          <div className="mt-2 text-sm text-gray-500">
+            {totalFilteredFeelings > 0 
+              ? `${totalFilteredFeelings} sentimiento${totalFilteredFeelings !== 1 ? 's' : ''} encontrado${totalFilteredFeelings !== 1 ? 's' : ''}`
+              : 'No se encontraron sentimientos'
+            }
+          </div>
+        )}
+      </div>
+
+      {/* Sentimientos seleccionados */}
+      {selectedFeelings.length > 0 && (
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-3">Sentimientos seleccionados ({selectedFeelings.length})</h3>
+          <div className="flex flex-wrap gap-2">
+            {selectedFeelings.map((feeling) => (
+              <span
+                key={feeling}
+                className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-blue-200 transition-colors"
+                onClick={() => toggleFeeling(feeling)}
+              >
+                {feeling} ×
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Lista de sentimientos filtrados */}
+      {Object.keys(filteredFeelings).length === 0 ? (
+        <div className="text-center py-12">
+          <div className="text-gray-500 text-lg mb-2">
+            No se encontraron sentimientos que coincidan con "{searchTerm}"
+          </div>
+          <div className="text-gray-400 text-sm">
+            Intenta con otros términos o explora las categorías disponibles
+          </div>
+        </div>
+      ) : (
+        Object.entries(filteredFeelings).map(([mainCategory, categories]) => (
+          <div key={mainCategory} className="mb-8">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">{mainCategory}</h3>
+            {Object.entries(categories as Record<string, string[]>).map(([category, feelingsList]) => (
+              <div key={category} className="feeling-category mb-6">
+                <h4 className="text-lg font-medium mb-3 text-gray-700">{category}</h4>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                  {feelingsList.map((feeling) => (
+                    <div
+                      key={feeling}
+                      className={`cursor-pointer px-4 py-2 rounded-full text-center text-sm font-medium transition-all duration-200 ease-in-out transform hover:scale-105 ${
+                        selectedFeelings.includes(feeling)
+                          ? "bg-blue-100 text-blue-800 shadow-md border border-blue-400 scale-105"
+                          : "bg-white text-gray-700 shadow-sm hover:shadow-md border border-gray-300 hover:border-blue-300"
+                      }`}
+                      onClick={() => toggleFeeling(feeling)}
+                    >
+                      <span>{feeling}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ))
+      )}
+
       <ScrollToTopButton />
     </Card>
   );
@@ -138,9 +244,30 @@ function NeedsStep({
   selectedNeeds: string[];
   onChange: (needs: string[]) => void;
 }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredNeeds, setFilteredNeeds] = useState(needs);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  // Función para filtrar necesidades basada en el término de búsqueda
+  useEffect(() => {
+    if (!searchTerm.trim()) {
+      setFilteredNeeds(needs);
+      return;
+    }
+
+    const searchLower = searchTerm.toLowerCase();
+    const filtered = needs.map(category => ({
+      ...category,
+      items: category.items.filter(need =>
+        need.toLowerCase().includes(searchLower)
+      )
+    })).filter(category => category.items.length > 0);
+
+    setFilteredNeeds(filtered);
+  }, [searchTerm]);
 
   const toggleNeed = (need: string) => {
     if (selectedNeeds.includes(need)) {
@@ -150,36 +277,105 @@ function NeedsStep({
     }
   };
 
+  const clearSearch = () => {
+    setSearchTerm("");
+  };
+
+  // Contar total de necesidades mostradas
+  const totalFilteredNeeds = filteredNeeds.reduce((total, category) => {
+    return total + category.items.length;
+  }, 0);
+
   return (
     <Card className="p-6">
       <h2 className="text-2xl font-bold mb-4">Necesidades</h2>
-      <p className="text-gray-600 mb-4">
+      <p className="text-gray-600 mb-6">
         ¿Qué necesidades activan estos sentimientos? Conecta con la necesidad
         profunda que hay detrás de tu emoción.
       </p>
 
-      {needs.map((category) => (
-        <div key={category.category} className="feeling-category">
-          <h3 className="text-xl font-semibold mb-4">{category.category}</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {category.items.map((need) => (
-              <div
+      {/* Barra de búsqueda */}
+      <div className="mb-6 relative">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Input
+            type="text"
+            placeholder="Buscar necesidades... (ej: comprensión, autonomía, conexión)"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="pl-10 pr-10 py-3 text-base"
+          />
+          {searchTerm && (
+            <button
+              onClick={clearSearch}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          )}
+        </div>
+        
+        {searchTerm && (
+          <div className="mt-2 text-sm text-gray-500">
+            {totalFilteredNeeds > 0 
+              ? `${totalFilteredNeeds} necesidad${totalFilteredNeeds !== 1 ? 'es' : ''} encontrada${totalFilteredNeeds !== 1 ? 's' : ''}`
+              : 'No se encontraron necesidades'
+            }
+          </div>
+        )}
+      </div>
+
+      {/* Necesidades seleccionadas */}
+      {selectedNeeds.length > 0 && (
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-3">Necesidades seleccionadas ({selectedNeeds.length})</h3>
+          <div className="flex flex-wrap gap-2">
+            {selectedNeeds.map((need) => (
+              <span
                 key={need}
-               className={`cursor-pointer px-4 py-2 rounded-full text-center text-sm font-medium transition-all duration-200 ease-in-out transform ${
-      selectedNeeds.includes(need)
-        ? "bg-green-100 text-green-800 shadow-md border border-green-400 scale-105"
-        : "bg-white text-gray-700 shadow-sm hover:shadow-md hover:scale-105 border border-gray-300"
-  
-                }`}
+                className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-green-200 transition-colors"
                 onClick={() => toggleNeed(need)}
               >
-                
-                <span className="ml-2">{need}</span>
-              </div>
+                {need} ×
+              </span>
             ))}
           </div>
         </div>
-      ))}
+      )}
+
+      {/* Lista de necesidades filtradas */}
+      {filteredNeeds.length === 0 ? (
+        <div className="text-center py-12">
+          <div className="text-gray-500 text-lg mb-2">
+            No se encontraron necesidades que coincidan con "{searchTerm}"
+          </div>
+          <div className="text-gray-400 text-sm">
+            Intenta con otros términos o explora las categorías disponibles
+          </div>
+        </div>
+      ) : (
+        filteredNeeds.map((category) => (
+          <div key={category.category} className="feeling-category mb-6">
+            <h3 className="text-xl font-semibold mb-4 text-gray-800">{category.category}</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              {category.items.map((need) => (
+                <div
+                  key={need}
+                  className={`cursor-pointer px-4 py-2 rounded-full text-center text-sm font-medium transition-all duration-200 ease-in-out transform hover:scale-105 ${
+                    selectedNeeds.includes(need)
+                      ? "bg-green-100 text-green-800 shadow-md border border-green-400 scale-105"
+                      : "bg-white text-gray-700 shadow-sm hover:shadow-md border border-gray-300 hover:border-green-300"
+                  }`}
+                  onClick={() => toggleNeed(need)}
+                >
+                  <span>{need}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      )}
+
       <ScrollToTopButton />
     </Card>
   );
@@ -209,7 +405,7 @@ function RequestStep({
     <Card className="p-6">
       <h2 className="text-2xl font-bold mb-4">Petición</h2>
       <p className="text-gray-600 mb-4">
-        ¿Qué acciones o estrategias específicas quisiera que se realizaran ahora? Identifica qué
+        ¿Qué acciones específicas quisiera que se realizaran ahora? Identifica qué
         podrías pedirte a ti mismo o a otros para cuidar de tu necesidad.
       </p>
 
@@ -464,16 +660,15 @@ export default function DashboardPage() {
         </AnimatePresence>
 
         <div className="flex justify-center gap-4 mt-8">
-  {currentStep > 0 && (
-    <Button onClick={handleBack} variant="outline">
-      Atrás
-    </Button>
-  )}
-  <Button onClick={handleNext}>
-    {currentStep === steps.length - 1 ? "Finalizar" : "Siguiente"}
-  </Button>
-</div>
-
+          {currentStep > 0 && (
+            <Button onClick={handleBack} variant="outline">
+              Atrás
+            </Button>
+          )}
+          <Button onClick={handleNext}>
+            {currentStep === steps.length - 1 ? "Finalizar" : "Siguiente"}
+          </Button>
+        </div>
       </div>
     </div>
   );
