@@ -7,7 +7,6 @@ export const feelings = {
       "Celosa",
       "Crispada",
       "Descontenta",
-      "Desesperada",
       "Disgustada",
       "Enfadada",
       "Enfurecida",
@@ -18,7 +17,6 @@ export const feelings = {
       "Gruñona",
       "Harta",
       "Hostil",
-      "Impotente",
       "Indignada",
       "Irritada",
       "Malhumorada",
@@ -30,25 +28,23 @@ export const feelings = {
       "Violenta"
     ],
     "Tristeza y Melancolía": [
-      "Abatida",
       "Acongojada",
       "Afectada",
-      "Angustiada",
-      "Apagada",
+      "Angustiada", // Movido aquí - más relacionado con tristeza profunda
       "Apática",
       "Apesadumbrada",
       "Decepcionada",
       "Deprimida",
       "Desanimada",
       "Descorazonada",
-      "Desesperada",
+      "Desesperada", // Mantiene aquí - más vinculado a tristeza que a ira
       "Desgraciada",
       "Desilusionada",
       "Desinteresada",
       "Desmotivada",
       "Destrozada",
       "Dolida",
-      "Impotente",
+      "Impotente", // Mantiene aquí - sensación de no poder cambiar la situación triste
       "Inconsolable",
       "Indefensa",
       "Infeliz",
@@ -73,7 +69,6 @@ export const feelings = {
       "Escéptica",
       "Estupefacta",
       "Indecisa",
-      "Inquieta",
       "Pensativa",
       "Perdida",
       "Perpleja",
@@ -84,11 +79,11 @@ export const feelings = {
       "Vacilante"
     ],
     "Agotamiento": [
-      "Abatida",
+      "Abatida", // Mantiene aquí - más relacionado con cansancio físico/mental
       "Aburrida",
       "Adormecida",
       "Agotada",
-      "Apagada",
+      "Apagada", // Mantiene aquí - relacionado con falta de energía
       "Aplastada",
       "Cansada",
       "Decaída",
@@ -116,7 +111,6 @@ export const feelings = {
       "Incapacitada",
       "Inhibida",
       "Insegura",
-      "Sensible",
       "Tímida",
       "Vulnerable"
     ],
@@ -128,25 +122,21 @@ export const feelings = {
       "Sobrecargada"
     ],
     "Tensión": [
-      "Agitada",
-      "Alarmada",
       "Alterada",
       "Incómoda",
-      "Inquieta",
+      "Inquieta", // Mantiene aquí - más relacionado con tensión nerviosa
       "Intranquila",
-      "Nerviosa",
       "Tensa"
     ],
     "Miedo y Ansiedad": [
-      "Agitada",
-      "Alarmada",
-      "Angustiada",
+      "Agitada", // Mantiene aquí - más específico de ansiedad
+      "Alarmada", // Mantiene aquí - respuesta inmediata al miedo
       "Ansiosa",
       "Asustada",
       "Aterrorizada",
       "Espantada",
       "Impaciente",
-      "Nerviosa",
+      "Nerviosa", // Mantiene aquí - más específico de ansiedad
       "Paralizada",
       "Temblorosa",
       "Temerosa"
@@ -156,7 +146,7 @@ export const feelings = {
       "Distante",
       "Fría",
       "Indiferente",
-      "Solitara",
+      "Solitaria", // Corregido: era "Solitara"
       "Sola"
     ]
   },
@@ -164,16 +154,12 @@ export const feelings = {
     "Alegría y Felicidad": [
       "Afortunada",
       "Alegre",
-      "Animada",
       "Aventurera",
-      "Complicada",
       "Contenta",
       "Divertida",
       "Efusiva",
-      "Llena de energía",
       "Emocionada",
       "Encantada",
-      "Entusiasmada",
       "Esperanzada",
       "Estimulada",
       "Estupenda",
@@ -204,14 +190,16 @@ export const feelings = {
       "Equilibrada",
       "Humilde",
       "Neutral",
-      "Tranquila",
+      "Quieta", // Añadido para consistencia con versión masculina
       "Relajada",
       "Serena",
       "Silenciosa",
-      "Sosegada"
+      "Sosegada",
+      "Tranquila"
     ],
     "Energía y Vitalidad": [
       "Activa",
+      "Animada", // Mantiene aquí - más relacionado con energía vital
       "Bien despierta",
       "Energética",
       "Fortalecida",
@@ -241,7 +229,7 @@ export const feelings = {
       "Cercana",
       "Compasiva",
       "Conmovida",
-      "Sensible",
+      "Sensible", // Mantiene aquí - sensibilidad emocional positiva
       "Tierna"
     ],
     "Conexión Social": [
@@ -260,7 +248,7 @@ export const feelings = {
       "Alerta",
       "Asombrada",
       "Curiosa",
-      "Entusiasmada",
+      "Entusiasmada", // Mantiene aquí - más específico del interés por descubrir
       "Expectante",
       "Ilusionada",
       "Impresionada",
@@ -282,7 +270,6 @@ export const feelings = {
       "Sensitiva"
     ],
     "Confianza": [
-      "Animada",
       "Capaz",
       "Comprometida",
       "Confiada",
@@ -291,8 +278,8 @@ export const feelings = {
       "Involucrada",
       "Motivada",
       "Orgullosa",
-      "Segura",
       "Reconocida",
+      "Segura",
       "Valorada"
     ]
   }
