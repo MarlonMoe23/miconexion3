@@ -1,5 +1,5 @@
-const CACHE_NAME = 'mi-conexion-interna-v5';
-const STATIC_CACHE_NAME = 'static-v5';
+const CACHE_NAME = 'mi-conexion-interna-v6';
+const STATIC_CACHE_NAME = 'static-v6';
 
 // URLs principales para cachear
 const urlsToCache = [
@@ -11,8 +11,14 @@ const urlsToCache = [
 
 // Recursos estáticos para cachear
 const staticResources = [
-  '/icon-192x192.png',
-  '/icon-512x512.png',
+  '/icon-72x72.png?v=2',
+  '/icon-96x96.png?v=2',
+  '/icon-128x128.png?v=2',
+  '/icon-144x144.png?v=2',
+  '/icon-152x152.png?v=2',
+  '/icon-192x192.png?v=2',
+  '/icon-384x384.png?v=2',
+  '/icon-512x512.png?v=2',
 ];
 
 // Instalación del Service Worker
@@ -128,8 +134,8 @@ self.addEventListener('push', (event) => {
 
   const options = {
     body: event.data.text(),
-    icon: '/icon-192x192.png',
-    badge: '/icon-72x72.png',
+    icon: '/icon-192x192.png?v=2',
+    badge: '/icon-72x72.png?v=2',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
@@ -139,7 +145,7 @@ self.addEventListener('push', (event) => {
       {
         action: 'explore',
         title: 'Abrir app',
-        icon: '/icon-192x192.png'
+        icon: '/icon-192x192.png?v=2'
       }
     ]
   };
