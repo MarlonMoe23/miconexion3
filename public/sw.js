@@ -1,5 +1,5 @@
-const CACHE_NAME = 'mi-conexion-interna-v6';
-const STATIC_CACHE_NAME = 'static-v6';
+const CACHE_NAME = 'mi-conexion-interna-v10';
+const STATIC_CACHE_NAME = 'static-v10';
 
 // URLs principales para cachear
 const urlsToCache = [

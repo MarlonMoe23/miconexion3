@@ -1,15 +1,16 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { ChevronDown, Search, X } from "lucide-react";
+import { ChevronDown, Search, X, Download, Share2 } from "lucide-react";
 import { feelings } from "@/lib/feelings";
 import { needs } from "@/lib/needs";
+import html2canvas from "html2canvas";
 
 const steps = ["Observación", "Sentimientos", "Necesidades", "Petición", "Resumen"];
 
@@ -87,7 +88,6 @@ function FeelingsStep({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Función para filtrar sentimientos basada en el término de búsqueda
   useEffect(() => {
     if (!searchTerm.trim()) {
       setFilteredFeelings(feelings);
@@ -130,7 +130,6 @@ function FeelingsStep({
     setSearchTerm("");
   };
 
-  // Contar total de sentimientos mostrados
   const totalFilteredFeelings = Object.values(filteredFeelings).reduce((total, categories) => {
     return total + Object.values(categories as Record<string, string[]>).reduce((catTotal, feelingsList) => {
       return catTotal + feelingsList.length;
@@ -145,7 +144,6 @@ function FeelingsStep({
         cómo te sientes, sin juzgarte.
       </p>
 
-      {/* Barra de búsqueda */}
       <div className="mb-6 relative">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -176,7 +174,6 @@ function FeelingsStep({
         )}
       </div>
 
-      {/* Sentimientos seleccionados */}
       {selectedFeelings.length > 0 && (
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-3">Sentimientos seleccionados ({selectedFeelings.length})</h3>
@@ -194,7 +191,6 @@ function FeelingsStep({
         </div>
       )}
 
-      {/* Lista de sentimientos filtrados */}
       {Object.keys(filteredFeelings).length === 0 ? (
         <div className="text-center py-12">
           <div className="text-gray-500 text-lg mb-2">
@@ -251,7 +247,6 @@ function NeedsStep({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Función para filtrar necesidades basada en el término de búsqueda
   useEffect(() => {
     if (!searchTerm.trim()) {
       setFilteredNeeds(needs);
@@ -281,7 +276,6 @@ function NeedsStep({
     setSearchTerm("");
   };
 
-  // Contar total de necesidades mostradas
   const totalFilteredNeeds = filteredNeeds.reduce((total, category) => {
     return total + category.items.length;
   }, 0);
@@ -294,7 +288,6 @@ function NeedsStep({
         profunda que hay detrás de tu emoción.
       </p>
 
-      {/* Barra de búsqueda */}
       <div className="mb-6 relative">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -325,7 +318,6 @@ function NeedsStep({
         )}
       </div>
 
-      {/* Necesidades seleccionadas */}
       {selectedNeeds.length > 0 && (
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-3">Necesidades seleccionadas ({selectedNeeds.length})</h3>
@@ -343,7 +335,6 @@ function NeedsStep({
         </div>
       )}
 
-      {/* Lista de necesidades filtradas */}
       {filteredNeeds.length === 0 ? (
         <div className="text-center py-12">
           <div className="text-gray-500 text-lg mb-2">
@@ -405,7 +396,7 @@ function RequestStep({
     <Card className="p-6">
       <h2 className="text-2xl font-bold mb-4">Petición</h2>
       <p className="text-gray-600 mb-4">
-        ¿Qué acciones específicas quisiera que se realizaran ahora? Identifica qué
+        ¿Qué acciones o estrategias específicas quisiera que se realizaran ahora? Identifica qué
         podrías pedirte a ti mismo o a otros para cuidar de tu necesidad.
       </p>
 
@@ -413,10 +404,10 @@ function RequestStep({
         <Textarea
           value={newRequest}
           onChange={(e) => setNewRequest(e.target.value)}
-          placeholder="Escribe una petición concreta y realizable..."
+          placeholder="Escribe una petición o estrategia concreta y realizable..."
           className="mb-2"
         />
-        <Button onClick={addRequest}>Agregar Petición</Button>
+        <Button onClick={addRequest}>Agregar Petición o Estrategia</Button>
       </div>
 
       <div className="space-y-2">
@@ -439,6 +430,10 @@ function RequestStep({
 }
 
 function SummaryStep({ formData }: { formData: any }) {
+  const summaryRef = useRef<HTMLDivElement>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const { toast } = useToast();
+
   const handleWhatsAppShare = () => {
     const text = `
 *Mi Conexión Interna - Resumen*
@@ -452,70 +447,159 @@ ${formData.feelings.join(", ")}
 *NECESIDADES:*
 ${formData.needs.join(", ")}
 
-*PETICIONES:*
+*PETICIONES/ESTRATEGIAS:*
 ${formData.requests.join("\n")}`;
 
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
   };
 
+  const handleDownloadImage = async () => {
+    if (!summaryRef.current) return;
+
+    setIsGenerating(true);
+    
+    try {
+      // Generar la imagen
+      const canvas = await html2canvas(summaryRef.current, {
+        backgroundColor: '#ffffff',
+        scale: 2, // Mayor calidad
+        logging: false,
+        useCORS: true,
+      });
+
+      // Convertir a blob
+      canvas.toBlob((blob) => {
+        if (!blob) {
+          toast({
+            title: "Error",
+            description: "No se pudo generar la imagen",
+            variant: "destructive",
+          });
+          setIsGenerating(false);
+          return;
+        }
+
+        // Crear enlace de descarga
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        const date = new Date().toLocaleDateString('es-ES').replace(/\//g, '-');
+        link.download = `mi-conexion-interna-${date}.png`;
+        link.href = url;
+        link.click();
+        
+        // Limpiar
+        URL.revokeObjectURL(url);
+        
+        toast({
+          title: "¡Imagen guardada!",
+          description: "La imagen se descargó correctamente. Busca en tu carpeta de Descargas.",
+        });
+        
+        setIsGenerating(false);
+      }, 'image/png');
+
+    } catch (error) {
+      console.error('Error al generar imagen:', error);
+      toast({
+        title: "Error",
+        description: "Hubo un problema al generar la imagen",
+        variant: "destructive",
+      });
+      setIsGenerating(false);
+    }
+  };
+
   return (
     <Card className="p-6">
       <h2 className="text-2xl font-bold mb-4">Resumen</h2>
       
-      <div className="space-y-6">
-        <div>
-          <h3 className="text-xl font-semibold mb-2">Observación</h3>
-          <p className="bg-gray-50 p-4 rounded">{formData.observation}</p>
+      {/* Contenido que se convertirá en imagen */}
+      <div 
+        ref={summaryRef} 
+        className="bg-white p-6 rounded-lg"
+      >
+        {/* Header decorativo */}
+        <div className="text-center mb-6 pb-4 border-b-2 border-blue-500">
+          <h1 className="text-2xl font-bold text-blue-600 mb-1">Mi Conexión Interna</h1>
+          <p className="text-sm text-gray-600">Resumen de tu proceso CNV</p>
+          <p className="text-xs text-gray-500 mt-1">
+            {new Date().toLocaleDateString('es-ES', { 
+              weekday: 'long', 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            })}
+          </p>
         </div>
 
-        <div>
-          <h3 className="text-xl font-semibold mb-2">Sentimientos</h3>
-          <div className="flex flex-wrap gap-2">
-            {formData.feelings.map((feeling: string) => (
-              <span key={feeling} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
-                {feeling}
-              </span>
-            ))}
+        <div className="space-y-4">
+          {/* Observación */}
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">Observación</h3>
+            <p className="text-gray-700 text-sm leading-snug bg-gray-50 p-3 rounded">{formData.observation}</p>
+          </div>
+
+          {/* Sentimientos */}
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">Sentimientos</h3>
+            <div className="flex flex-wrap gap-1.5">
+              {formData.feelings.map((feeling: string) => (
+                <span key={feeling} className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
+                  {feeling}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Necesidades */}
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">Necesidades</h3>
+            <div className="flex flex-wrap gap-1.5">
+              {formData.needs.map((need: string) => (
+                <span key={need} className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                  {need}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Peticiones */}
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">Peticiones</h3>
+            <ul className="space-y-1.5">
+              {formData.requests.map((request: string, index: number) => (
+                <li key={index} className="flex items-start gap-2 text-gray-700 text-sm bg-gray-50 p-2 rounded">
+                  <span className="text-blue-500 font-bold">•</span>
+                  <span className="flex-1">{request}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div>
-          <h3 className="text-xl font-semibold mb-2">Necesidades</h3>
-          <div className="flex flex-wrap gap-2">
-            {formData.needs.map((need: string) => (
-              <span key={need} className="bg-green-100 text-green-800 px-3 py-1 rounded-full">
-                {need}
-              </span>
-            ))}
-          </div>
+        {/* Footer */}
+        <div className="mt-6 pt-3 text-center text-xs text-gray-500 border-t border-gray-300">
+          <p>Comunicación No Violenta - Marshall Rosenberg</p>
         </div>
+      </div>
 
-        <div>
-          <h3 className="text-xl font-semibold mb-2">Peticiones</h3>
-          <ul className="space-y-2">
-            {formData.requests.map((request: string, index: number) => (
-              <li key={index} className="bg-gray-50 p-3 rounded">
-                {request}
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* Botones de acción */}
+      <div className="mt-6 space-y-3">
+        <Button 
+          onClick={handleDownloadImage}
+          disabled={isGenerating}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center gap-2"
+        >
+          <Download className="w-5 h-5" />
+          {isGenerating ? 'Generando imagen...' : 'Descargar como Imagen'}
+        </Button>
 
         <Button 
           onClick={handleWhatsAppShare} 
           className="w-full bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-2"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="white"
-            className="w-5 h-5"
-          >
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.828z"/>
-          </svg>
+          <Share2 className="w-5 h-5" />
           Compartir por WhatsApp
         </Button>
       </div>
