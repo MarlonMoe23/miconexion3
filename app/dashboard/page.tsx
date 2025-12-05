@@ -483,8 +483,9 @@ ${formData.requests.join("\n")}`;
         // Crear enlace de descarga
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
-        const date = new Date().toLocaleDateString('es-ES').replace(/\//g, '-');
-        link.download = `mi-conexion-interna-${date}.png`;
+        const now = new Date();
+        const dateTime = now.toLocaleDateString('es-ES').replace(/\//g, '-') + '-' + now.toLocaleTimeString('es-ES').replace(/:/g, '-');
+        link.download = `mi-conexion-interna-${dateTime}.png`;
         link.href = url;
         link.click();
         
@@ -512,9 +513,7 @@ ${formData.requests.join("\n")}`;
 
   return (
     <Card className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Resum555en</h2>
-      
-      {/* Contenido que se convertirá en imagen */}
+     {/* Contenido que se convertirá en imagen */}
       <div 
         ref={summaryRef} 
         className="bg-white p-6 rounded-lg"
