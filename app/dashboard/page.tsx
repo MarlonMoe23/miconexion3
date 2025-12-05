@@ -512,7 +512,7 @@ ${formData.requests.join("\n")}`;
 
   return (
     <Card className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Resumen</h2>
+      <h2 className="text-2xl font-bold mb-4">Resum555en</h2>
       
       {/* Contenido que se convertirá en imagen */}
       <div 
@@ -564,7 +564,7 @@ ${formData.requests.join("\n")}`;
             </div>
           </div>
 
-          {/* Peticiones */}
+          {/* Peticiones/Estrategias */}
           <div>
             <h3 className="text-lg font-semibold mb-2 text-gray-800">Peticiones</h3>
             <ul className="space-y-1.5">
