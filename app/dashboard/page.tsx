@@ -563,9 +563,9 @@ ${formData.requests.join("\n")}`;
             </div>
           </div>
 
-          {/* Peticiones/Estrategias */}
+          {/* Peticiones */}
           <div>
-            <h3 className="text-lg font-semibold mb-2 text-gray-800">Peticiones</h3>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800">Peticiones/Estrategias</h3>
             <ul className="space-y-1.5">
               {formData.requests.map((request: string, index: number) => (
                 <li key={index} className="flex items-start gap-2 text-gray-700 text-sm bg-gray-50 p-2 rounded">
