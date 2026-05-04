@@ -30,9 +30,9 @@ Sentimientos: ${feelings.join(", ")}
 Necesidades: ${needs.join(", ")}
 ${requests?.length ? `Petición: ${requests[0]}` : ""}
 
-El mensaje debe sonar natural, no como una plantilla.
+El mensaje debe sonar natural.
 Usa el espíritu del formato CNV: observación → sentimientos → necesidades → petición.
-Máximo 4 oraciones. Solo el mensaje, sin explicaciones ni comillas.`,
+Máximo 3 oraciones, no inventes sentimientos, ni necesidades, usa los que puso el usuario. Solo el mensaje, sin explicaciones ni comillas.`,
         },
       ],
     });
