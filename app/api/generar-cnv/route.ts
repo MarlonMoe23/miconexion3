@@ -30,7 +30,7 @@ Necesidades: ${needs.join(", ")}
 ${requests?.length ? `Petición: ${requests[0]}` : ""}
 
 El mensaje debe sonar natural. Puedes empezar con la palabra Cuando...
-Usa el espíritu del formato CNV: observación → sentimientos → necesidades → petición. IMPORTANTE: Las necesidades deben expresarse como sustantivos puros (ej: "consideración", "conexión", "autonomía"), NUNCA como "sentirme + adjetivo" o "necesitar + verbo". 
+Usa el espíritu del formato CNV: observación → sentimientos → necesidades → petición. IMPORTANTE: Los sentimientos deben expresarse con naturalidad y Las necesidades deben expresarse como sustantivos puros (ej: "consideración", "conexión", "autonomía"), NUNCA como "sentirme + adjetivo" o "necesitar + verbo". 
 Máximo 3 oraciones, no inventes sentimientos, ni necesidades, usa los que están listados. Solo el mensaje, sin explicaciones ni comillas.`,
         },
       ],
