@@ -1,173 +1,107 @@
 export const needs = [
   {
-    category: "Seguridad",
+    category: "1 Trascendencia",
     items: [
-      "Protección",
-      "Confianza",
-      "Estabilidad",
-      "Continuidad",
-      "Orden",
-      "Paz",
-      "Predictibilidad"
+      "Presencia",
+      "Inspiración",
+      "Evolución",
+      "Belleza",
+      "Armonía",
+      "Fluidez",
+      "Espacio"
     ]
   },
- 
-{
-    category: "Relacionales",
+  {
+    category: "2 Regeneración",
     items: [
-      "Ser Querido",
-      "Ser Respetado"
+      "Celebración",
+      "Gratitud",
+      "Duelo",
+      "Descanso",
+      "Juego"
     ]
   },
-
- {
-    category: "Amor",
+  {
+    category: "3 Empatía",
     items: [
-      "Afecto",
-      "Calidez",
+      "Ser Querida",
+      "Comprensión",
+      "Conexión",
+      "Amor",
+      "Aceptación",
       "Cariño",
-      "Cercanía",
-      "Compartir",
-      "Ternura",
+      "Compasión",
+      "Ser Escuchada",
       "Intimidad",
-      "Consideración",
-      "Cuidado mutuo",
+      "Ver/Ser Vista",
+      "Consideración"
+    ]
+  },
+  {
+    category: "4 Interdependencia",
+    items: [
+      "Cooperación",
+      "Comunidad",
+      "Inclusión",
+      "Apoyo mutuo",
+      "Pertenencia",
       "Reciprocidad"
     ]
   },
   {
-    category: "Empatía",
+    category: "5 Protección",
     items: [
-      "Aceptación",
-      "Comprensión",
-      "Escucha",
-      "Respeto",
-      "Validación",
-      "Apoyo",
-      "Compasión",
-      "Consideración",
-      "Hospitalidad",
-      "Presencia"
+      "Ser Respetada",
+      "Seguridad",
+      "Justicia",
     ]
   },
   {
-    category: "Conexión",
+    category: "6 Supervivencia",
     items: [
-      "Pertenencia",
-      "Cooperación",
-      "Comunicación",
-      "Cercanía",
-      "Comunidad",
-      "Compañía",
-      "Consideración",
-      "Consistencia",
-      "Inclusión",
-      "Mutualidad",
-      "Participación",
-      "Relación",
-      "Ver y ser visto",
-      "Conocer y ser conocido",
-      "Entender y ser entendido"
+      "Aire/agua/alimento",
+      "Estímulo sensorial",
+      "Expresión sexual",
+      "Procreación"
     ]
   },
   {
-    category: "Juego",
+    category: "7 Sentido",
     items: [
-      "Diversión",
-      "Ligereza",
-      "Aventura",
-      "Espontaneidad",
-      "Humor",
-      "Placer",
-      "Gozo",
-      "Entretenimiento"
-    ]
-  },
-  {
-    category: "Paz",
-    items: [
-      "Armonía",
-      "Belleza",
-      "Comodidad",
-      "Ecuanimidad",
-      "Espacio",
-      "Facilidad",
-      "Inspiración",
-      "Orden",
-      "Silencio",
-      "Soledad",
-      "Tranquilidad"
-    ]
-  },
-  {
-    category: "Autonomía",
-    items: [
-      "Elección",
-      "Dignidad",
-      "Independencia",
-      "Espacio",
-      "Espontaneidad",
-      "Libertad",
-      "Autodeterminación"
-    ]
-  },
-  {
-    category: "Significado",
-    items: [
-      "Aprendizaje",
-      "Claridad",
-      "Competencia",
-      "Conciencia",
-      "Creatividad",
-      "Crecimiento",
-      "Desarrollo",
-      "Eficacia",
-      "Efectividad",
-      "Entendimiento",
-      "Estimulación",
-      "Logro",
       "Propósito",
-      "Reto",
-      "Sentido"
+      "Contribución",
+      "Habilidad",
+      "Integridad",
     ]
   },
   {
-    category: "Celebración",
+    category: "8 Autonomía",
     items: [
-      "Celebrar la vida",
-      "Celebrar los sueños",
-      "Celebrar las pérdidas",
-      "Duelo"
+      "Libertad",
+      "Elección",
+      "Creatividad",
+      "Darse poder",
+      "Poder con"
     ]
   },
   {
-    category: "Integridad",
+    category: "9 Honestidad",
     items: [
       "Autenticidad",
-      "Creatividad",
-      "Honestidad",
-      "Presencia",
-      "Autoexpresión",
-      "Confianza",
-      "Autoestima",
-      "Autocuidado"
+      "Autoconexión",
+      "Expresión personal",
+      "Claridad",
+      "Aprendizaje"
     ]
   },
-{
-    category: "Subsistencia",
+  {
+    category: "10 Bienestar",
     items: [
-      "Aire",
-      "Alimentación",
-      "Agua",
-      "Descanso",
-      "Movimiento/ejercicio",
-      "Sueño",
-      "Expresión sexual",
-      "Abrigo",
-      "Vivienda",
-      "Salud física",
-      "Seguridad física",
-      "Contacto físico"
+      "Curación",
+      "Paz mental",
+      "Equilibrio",
+      "Comodidad",
+      "Confianza"
     ]
   }
 ];

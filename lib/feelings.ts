@@ -1,286 +1,105 @@
 export const feelings = {
   "Cuando mis necesidades no están satisfechas": {
-    "Ira y Frustración": [
-      "Agresiva",
-      "Amargada",
-      "Asqueada",
-      "Celosa",
-      "Crispada",
-      "Descontenta",
-      "Disgustada",
-      "Enfadada",
-      "Enfurecida",
-      "Enojada",
-      "Envidiosa",
+    "1 Ira y Frustración": [
       "Frustrada",
-      "Furiosa",
-      "Gruñona",
-      "Harta",
-      "Hostil",
+      "Enojada",
       "Indignada",
-      "Irritada",
-      "Malhumorada",
-      "Molesta",
-      "Rabiosa",
-      "Rencorosa",
-      "Repugnada",
       "Resentida",
-      "Violenta"
+      "Irritada",
+      "Molesta",
+      "Rabiosa"
     ],
-    "Tristeza y Melancolía": [
-      "Acongojada",
-      "Afectada",
-      "Angustiada", // Movido aquí - más relacionado con tristeza profunda
-      "Apática",
-      "Apesadumbrada",
-      "Decepcionada",
-      "Deprimida",
-      "Desanimada",
-      "Descorazonada",
-      "Desesperada", // Mantiene aquí - más vinculado a tristeza que a ira
-      "Desgraciada",
-      "Desilusionada",
-      "Desinteresada",
-      "Desmotivada",
-      "Destrozada",
+    "2 Tristeza y Melancolía": [
+      "Triste",
       "Dolida",
-      "Impotente", // Mantiene aquí - sensación de no poder cambiar la situación triste
-      "Inconsolable",
-      "Indefensa",
-      "Infeliz",
+      "Decepcionada",
+      "Desmotivada",
+      "Desesperada",
+      "Deprimida",
       "Melancólica",
-      "Nostálgica",
-      "Pesimista",
-      "Triste"
+      "Sola"
     ],
-    "Confusión e Incertidumbre": [
-      "Anonadada",
-      "Atónita",
-      "Bloqueada",
-      "Confusa",
-      "Conmocionada",
-      "Consternada",
-      "Contrariada",
-      "Desconcertada",
-      "Desorientada",
-      "Dividida",
-      "Dubitativa",
-      "Enturbiada",
-      "Escéptica",
-      "Estupefacta",
-      "Indecisa",
-      "Pensativa",
-      "Perdida",
-      "Perpleja",
-      "Perturbada",
-      "Preocupada",
-      "Rutinaria",
-      "Trastornada",
-      "Vacilante"
-    ],
-    "Agotamiento": [
-      "Abatida", // Mantiene aquí - más relacionado con cansancio físico/mental
-      "Aburrida",
-      "Adormecida",
-      "Agotada",
-      "Apagada", // Mantiene aquí - relacionado con falta de energía
-      "Aplastada",
-      "Cansada",
-      "Decaída",
-      "Exhausta",
-      "Fatigada",
-      "Hecha polvo",
-      "Inerte",
-      "Pesada",
-      "Quemada",
-      "Reventada",
-      "Saturada",
-      "Sin energía"
-    ],
-    "Inseguridad": [
-      "Acobardada",
-      "Acomplejada",
-      "Arrepentida",
-      "Avergonzada",
-      "Cerrada",
-      "Cohibida",
-      "Dependiente",
-      "Desconfiada",
-      "Frágil",
-      "Herida",
-      "Incapacitada",
-      "Inhibida",
-      "Insegura",
-      "Tímida",
-      "Vulnerable"
-    ],
-    "Sobrecarga": [
-      "Abrumada",
-      "Agobiada",
-      "Desbordada",
-      "Estresada",
-      "Sobrecargada"
-    ],
-    "Tensión": [
-      "Alterada",
-      "Incómoda",
-      "Inquieta", // Mantiene aquí - más relacionado con tensión nerviosa
-      "Intranquila",
-      "Tensa"
-    ],
-    "Miedo y Ansiedad": [
-      "Agitada", // Mantiene aquí - más específico de ansiedad
-      "Alarmada", // Mantiene aquí - respuesta inmediata al miedo
+    "3 Miedo y Ansiedad": [
       "Ansiosa",
       "Asustada",
-      "Aterrorizada",
-      "Espantada",
-      "Impaciente",
-      "Nerviosa", // Mantiene aquí - más específico de ansiedad
+      "Nerviosa",
+      "Temerosa",
       "Paralizada",
-      "Temblorosa",
-      "Temerosa"
+      "Impaciente"
     ],
-    "Desconexión Social": [
-      "Desconectada",
-      "Distante",
-      "Fría",
-      "Indiferente",
-      "Solitaria", // Corregido: era "Solitara"
-      "Sola"
+    "4 Confusión e Incertidumbre": [
+      "Confusa",
+      "Perdida",
+      "Desconcertada",
+      "Preocupada",
+      "Indecisa",
+      "Dividida"
+    ],
+    "5 Agotamiento": [
+      "Agotada",
+      "Cansada",
+      "Exhausta",
+      "Aburrida",
+      "Saturada"
+    ],
+    "6 Inseguridad": [
+      "Insegura",
+      "Vulnerable",
+      "Avergonzada",
+      "Frágil",
+      "Herida"
+    ],
+    "7 Tensión y Sobrecarga": [
+      "Abrumada",
+      "Estresada",
+      "Tensa",
+      "Incómoda",
+      "Agobiada"
     ]
   },
   "Cuando mis necesidades están satisfechas": {
-    "Alegría y Felicidad": [
-      "Afortunada",
+    "1 Alegría y Felicidad": [
       "Alegre",
-      "Aventurera",
       "Contenta",
-      "Divertida",
-      "Efusiva",
-      "Emocionada",
-      "Encantada",
-      "Esperanzada",
-      "Estimulada",
-      "Estupenda",
-      "Eufórica",
-      "Excitada",
-      "Fascinada",
       "Feliz",
-      "Flotando",
-      "Gozosa",
-      "Jovial",
-      "Optimista",
-      "Pletórica",
-      "Realizada",
-      "Saltando de alegría",
-      "Satisfecha"
+      "Satisfecha",
+      "Emocionada",
+      "Esperanzada",
+      "Realizada"
     ],
-    "Serenidad y Calma": [
-      "Agradecida",
-      "Aliviada",
-      "Armoniosa",
-      "Calmada",
-      "Centrada",
-      "Cómoda",
-      "Descansada",
-      "Despejada",
-      "En armonía",
-      "En paz",
-      "Equilibrada",
-      "Humilde",
-      "Neutral",
-      "Quieta", // Añadido para consistencia con versión masculina
+    "2 Serenidad y Calma": [
+      "Tranquila",
       "Relajada",
+      "En paz",
       "Serena",
-      "Silenciosa",
-      "Sosegada",
-      "Tranquila"
+      "Agradecida",
+      "Aliviada"
     ],
-    "Energía y Vitalidad": [
-      "Activa",
-      "Animada", // Mantiene aquí - más relacionado con energía vital
-      "Bien despierta",
-      "Energética",
-      "Fortalecida",
-      "Fresca",
-      "Fuerte",
-      "Liberada",
-      "Ligera",
-      "Lúcida",
-      "Radiante",
-      "Refrescada",
-      "Renovada",
-      "Revitalizada",
-      "Sensual",
-      "Vibrante",
-      "Vigorosa",
-      "Vital",
-      "Viva"
-    ],
-    "Amor y Afecto": [
-      "Acogedora",
-      "Afectuosa",
+    "3 Amor y Afecto": [
       "Amorosa",
-      "Apasionada",
-      "Atraída",
-      "Cálida",
       "Cariñosa",
-      "Cercana",
-      "Compasiva",
-      "Conmovida",
-      "Sensible", // Mantiene aquí - sensibilidad emocional positiva
-      "Tierna"
+      "Tierna",
+      "Cálida",
+      "Compasiva"
     ],
-    "Conexión Social": [
-      "Amistosa",
-      "Comprensiva",
-      "Comunicativa",
-      "Cordial",
-      "Dialogante",
-      "Generosa",
-      "Próxima",
-      "Servicial",
-      "Sociable"
+    "4 Energía y Vitalidad": [
+      "Energética",
+      "Vital",
+      "Vibrante",
+      "Fortalecida",
+      "Animada"
     ],
-    "Curiosidad e Interés": [
-      "Absorta",
-      "Alerta",
-      "Asombrada",
-      "Curiosa",
-      "Entusiasmada", // Mantiene aquí - más específico del interés por descubrir
-      "Expectante",
-      "Ilusionada",
-      "Impresionada",
-      "Interesada",
-      "Intrigada",
-      "Sorprendida"
-    ],
-    "Apertura y Receptividad": [
-      "Abierta",
-      "Atenta",
-      "Despierta",
-      "Desprendida",
-      "Despreocupada",
-      "Disponible",
-      "Dispuesta",
-      "Expansiva",
-      "Inspirada",
-      "Receptiva",
-      "Sensitiva"
-    ],
-    "Confianza": [
-      "Capaz",
-      "Comprometida",
-      "Confiada",
-      "Decidida",
-      "Independiente",
-      "Involucrada",
-      "Motivada",
-      "Orgullosa",
-      "Reconocida",
+    "5 Confianza": [
       "Segura",
-      "Valorada"
+      "Motivada",
+      "Capaz",
+      "Orgullosa"
+    ],
+    "6 Curiosidad e Interés": [
+      "Curiosa",
+      "Entusiasmada",
+      "Asombrada",
+      "Inspirada"
     ]
   }
 };
