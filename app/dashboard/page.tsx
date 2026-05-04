@@ -134,7 +134,7 @@ function FeelingsStep({
     <Card className="p-6">
       <h2 className="text-2xl font-bold mb-4">Sentimientos</h2>
       <p className="text-gray-600 mb-6">
-        ¿Qué emociones o sentimientos son activados en ti? Reconoce y nombra
+        ¿Qué emociones o sentimientos son estimulados en ti? Reconoce y nombra
         cómo te sientes, sin juzgarte.
       </p>
 
@@ -575,7 +575,7 @@ function SummaryStep({ formData }: { formData: any }) {
           {isGeneratingAI ? (
             <span className="animate-pulse">Generando mensaje...</span>
           ) : (
-            <>{mensajeCNV ? "✨ Regenerar mensaje CNV" : "✨ Generar mensaje CNV"}</>
+            <>{mensajeCNV ? "✨ Regenerar con IA" : "✨ Generar mensaje con IA"}</>
           )}
         </Button>
 
