@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 Observación: ${observation}
 Sentimientos: ${feelings.join(", ")}
 Necesidades: ${needs.join(", ")}
-${requests?.length ? `Petición: ${requests[0]}` : ""}
+${requests?.length ? `Peticiones/Estrategias: ${requests.join(", ")}` : ""}
 
 El mensaje debe sonar natural. Puedes empezar con la palabra Cuando...
 Usa el espíritu del formato CNV: observación → sentimientos → necesidades → petición. IMPORTANTE: Los sentimientos deben expresarse con naturalidad y Las necesidades deben expresarse como sustantivos puros (ej: "consideración", "conexión", "autonomía"), NUNCA como "sentirme + adjetivo" o "necesitar + verbo". 
