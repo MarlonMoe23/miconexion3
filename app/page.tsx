@@ -1,12 +1,29 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import PWARegister from "@/components/pwa-register";
 
+type Gender = "hombre" | "mujer";
+
 export default function Home() {
+  const [gender, setGender] = useState<Gender | null>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("cnv_gender") as Gender | null;
+    if (saved === "hombre" || saved === "mujer") {
+      setGender(saved);
+    }
+  }, []);
+
+  const selectGender = (g: Gender) => {
+    setGender(g);
+    localStorage.setItem("cnv_gender", g);
+  };
+
   return (
     <main className="min-h-screen gradient-bg flex flex-col items-center justify-center p-4">
       <motion.div
@@ -18,24 +35,70 @@ export default function Home() {
         <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
           Mi Conexión Interna
         </h1>
-     
+
         <p className="italic text-gray-600 mb-4">
           "¿Qué parte dentro de ti quiere ser escuchada hoy?"
         </p>
 
         <Card className="p-6 mb-8 bg-white/80 backdrop-blur-sm">
           <p className="text-lg text-gray-700 mb-6">
-             Un espacio seguro para reconectar contigo misma, escuchando tus sentimientos y necesidades con compasión.
+            Un espacio seguro para reconectar contigo mismo, escuchando tus
+            sentimientos y necesidades con compasión.
           </p>
-          
-          <Link href="/dashboard">
-            <Button 
-              className="w-full md:w-auto button-hover bg-gradient-to-r from-blue-500 to-purple-500 text-white"
+
+          {/* Selección de género */}
+          <div className="mb-6">
+            <p className="text-sm font-medium text-gray-600 mb-3">
+              Selecciona tu perfil:
+            </p>
+            <div className="flex gap-3 justify-center">
+              <button
+                onClick={() => selectGender("hombre")}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 border-2 ${
+                  gender === "hombre"
+                    ? "bg-blue-500 text-white border-blue-500 shadow-md scale-105"
+                    : "bg-white text-gray-700 border-gray-300 hover:border-blue-400 hover:shadow"
+                }`}
+              >
+                Hombre
+              </button>
+              <button
+                onClick={() => selectGender("mujer")}
+                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 border-2 ${
+                  gender === "mujer"
+                    ? "bg-purple-500 text-white border-purple-500 shadow-md scale-105"
+                    : "bg-white text-gray-700 border-gray-300 hover:border-purple-400 hover:shadow"
+                }`}
+              >
+                Mujer
+              </button>
+            </div>
+            {gender && (
+              <p className="text-xs text-gray-400 mt-2">
+                Perfil guardado: <strong>{gender}</strong>
+              </p>
+            )}
+          </div>
+
+          <Link href={gender ? "/dashboard" : "#"}>
+            <Button
+              className={`w-full md:w-auto button-hover text-white transition-opacity ${
+                gender
+                  ? "bg-gradient-to-r from-blue-500 to-purple-500"
+                  : "bg-gray-300 pointer-events-none cursor-not-allowed"
+              }`}
               size="lg"
+              disabled={!gender}
             >
               Iniciar mi momento de conexión
             </Button>
           </Link>
+
+          {!gender && (
+            <p className="text-xs text-gray-400 mt-2">
+              Selecciona un perfil para continuar
+            </p>
+          )}
         </Card>
 
         <motion.div
@@ -46,12 +109,12 @@ export default function Home() {
         >
           <p>Basado en los principios de la Comunicación No Violenta (CNV)</p>
           <div className="pt-4 border-t border-gray-200">
-            <p className="font-medium">Version 3.0 Mujeres</p>
+            <p className="font-medium">Version 3.0</p>
             <p className="font-medium">Desarrollado por Marlon Ortiz</p>
           </div>
         </motion.div>
       </motion.div>
-      
+
       <PWARegister />
     </main>
   );
