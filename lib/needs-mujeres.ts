@@ -34,6 +34,7 @@ export const needs = [
       "Ser Escuchada",
       "Intimidad",
       "Ver/Ser Vista",
+      "Cuidado",
       "Consideración"
     ]
   },
