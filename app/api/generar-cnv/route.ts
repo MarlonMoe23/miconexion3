@@ -22,8 +22,7 @@ export async function POST(req: NextRequest) {
       messages: [
         {
           role: "user",
-          content: `Eres un experto en Comunicación No Violenta. 
-Redacta UN párrafo empático y humano en primera persona con estos datos:
+          content: `Eres un experto en Comunicación No Violenta. Redacta UN párrafo empático y humano en primera persona con estos datos:
 
 Observación: ${observation}
 Sentimientos: ${feelings.join(", ")}
@@ -31,8 +30,8 @@ Necesidades: ${needs.join(", ")}
 ${requests?.length ? `Petición: ${requests[0]}` : ""}
 
 El mensaje debe sonar natural. Puedes empezar con la palabra Cuando...
-Usa el espíritu del formato CNV: observación → sentimientos → necesidades → petición.
-Máximo 3 oraciones, no inventes sentimientos, ni necesidades, usa los que puso el usuario. Solo el mensaje, sin explicaciones ni comillas.`,
+Usa el espíritu del formato CNV: observación → sentimientos → necesidades → petición. IMPORTANTE: Las necesidades deben expresarse como sustantivos puros (ej: "consideración", "conexión", "autonomía"), NUNCA como "sentirme + adjetivo" o "necesitar + verbo". 
+Máximo 3 oraciones, no inventes sentimientos, ni necesidades, usa los que están listados. Solo el mensaje, sin explicaciones ni comillas.`,
         },
       ],
     });
