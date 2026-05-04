@@ -22,17 +22,17 @@ export async function POST(req: NextRequest) {
       messages: [
         {
           role: "user",
-          content: `Redacta UN párrafo de Comunicación No Violenta con estos datos:
+          content: `Eres un experto en Comunicación No Violenta. 
+Redacta UN párrafo empático y humano con estos datos:
 
 Observación: ${observation}
 Sentimientos: ${feelings.join(", ")}
 Necesidades: ${needs.join(", ")}
 ${requests?.length ? `Petición: ${requests[0]}` : ""}
 
-Usa exactamente este formato:
-"Cuando [observación resumida], me siento [sentimientos] porque necesito [necesidades]. [Petición si existe, si no omite esta parte]"
-
-Máximo 3 oraciones. Solo el mensaje, sin explicaciones ni comillas extra.`,
+El mensaje debe sonar natural, no como una plantilla.
+Usa el espíritu del formato CNV: observación → sentimientos → necesidades → petición.
+Máximo 4 oraciones. Solo el mensaje, sin explicaciones ni comillas.`,
         },
       ],
     });
