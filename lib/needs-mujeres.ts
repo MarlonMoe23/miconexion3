@@ -55,12 +55,14 @@ export const needs = [
       "Ser Respetada",
       "Seguridad",
       "Justicia",
+      "Estabilidad"
     ]
   },
   {
     category: "6 Supervivencia",
     items: [
       "Aire/agua/alimento",
+      "Sustento",
       "Estímulo sensorial",
       "Expresión sexual",
       "Procreación"
