@@ -2,109 +2,113 @@ export const needs = [
   {
     category: "1 Trascendencia",
     items: [
-      "Presencia",
-      "Inspiración",
-      "Evolución",
-      "Belleza",
-      "Armonía",
-      "Fluidez",
-      "Espacio"
+"Armonía",
+  "Belleza",
+  "Espacio",
+  "Evolución",
+  "Fluidez",
+  "Inspiración",
+  "Naturaleza",
+  "Presencia"
     ]
   },
   {
     category: "2 Regeneración",
     items: [
-      "Celebración",
-      "Gratitud",
-      "Duelo",
-      "Descanso",
-      "Juego"
+ "Celebración",
+  "Descanso",
+  "Duelo",
+  "Gratitud",
+  "Juego",
+  "Quietud",
+  "Relajación"
     ]
   },
   {
     category: "3 Empatía",
     items: [
-      "Ser Querida",
-      "Comprensión",
-      "Conexión",
-      "Amor",
-      "Aceptación",
-      "Cariño",
-      "Compasión",
-      "Ser Escuchada",
-      "Intimidad",
-      "Ver/Ser Vista",
-      "Cuidado",
-      "Consideración"
+  "Aceptación",
+  "Amor",
+  "Cariño",
+  "Compasión",
+  "Comprensión",
+  "Conexión",
+  "Consideración",
+  "Cuidado",
+  "Intimidad",
+  "Reconocimiento",
+  "Ser Escuchada",
+  "Ser Querida",
+  "Ser Vista",
+  "Validación"
     ]
   },
   {
     category: "4 Interdependencia",
     items: [
-      "Cooperación",
-      "Comunidad",
-      "Inclusión",
-      "Apoyo mutuo",
-      "Pertenencia",
-      "Reciprocidad"
+  "Apoyo mutuo",
+  "Comunidad",
+  "Cooperación",
+  "Inclusión",
+  "Participación",
+  "Pertenencia",
+  "Reciprocidad"
     ]
   },
   {
     category: "5 Protección",
     items: [
-      "Ser Respetada",
-      "Seguridad",
-      "Justicia",
-      "Estabilidad"
-    ]
+"Estabilidad",
+  "Justicia",
+  "Seguridad",
+  "Ser Respetada"  
+  ]
   },
   {
     category: "6 Supervivencia",
     items: [
-      "Aire/agua/alimento",
-      "Sustento",
-      "Estímulo sensorial",
-      "Expresión sexual",
-      "Procreación"
+"Aire/agua/alimento",
+  "Estímulo sensorial",
+  "Luz Solar",
+  "Procreación",
+  "Sustento"
     ]
   },
   {
     category: "7 Sentido",
     items: [
-      "Propósito",
-      "Contribución",
-      "Habilidad",
-      "Integridad",
-    ]
+  "Contribución",
+  "Habilidad",
+  "Integridad",
+  "Propósito"    ]
   },
   {
     category: "8 Autonomía",
     items: [
-      "Libertad",
-      "Elección",
-      "Creatividad",
-      "Darse poder",
-      "Poder con"
-    ]
+  "Creatividad",
+  "Darse poder",
+  "Elección",
+  "Libertad",
+  "Poder con"    ]
   },
   {
     category: "9 Honestidad",
     items: [
-      "Autenticidad",
-      "Autoconexión",
-      "Expresión personal",
-      "Claridad",
-      "Aprendizaje"
-    ]
+  "Aprendizaje",
+  "Autenticidad",
+  "Autoconexión",
+  "Claridad",
+  "Expresión personal"    ]
   },
   {
     category: "10 Bienestar",
     items: [
-      "Curación",
-      "Paz mental",
-      "Equilibrio",
-      "Comodidad",
-      "Confianza"
+ "Comodidad",
+  "Confianza",
+  "Curación",
+  "Equilibrio",
+  "Paz",
+  "Salud"
     ]
   }
 ];
