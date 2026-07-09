@@ -2,85 +2,101 @@ export const needs = [
   {
     category: "1 Trascendencia",
     items: [
-"Armonía",
-  "Belleza",
-  "Espacio",
-  "Evolución",
-  "Fluidez",
-  "Inspiración",
-  "Naturaleza",
-  "Presencia"
+      "Armonía",
+      "Belleza",
+      "Espacio",
+      "Esperanza",
+      "Evolución",
+      "Fluidez",
+      "Inspiración",
+      "Naturaleza",
+      "Presencia",
+      "Sanación"
     ]
   },
   {
     category: "2 Regeneración",
     items: [
- "Celebración",
-  "Descanso",
-  "Duelo",
-  "Gratitud",
-  "Juego",
-  "Quietud",
-  "Relajación"
+      "Aventura",
+      "Celebración",
+      "Descanso",
+      "Duelo",
+      "Gratitud",
+      "Humor",
+      "Juego",
+      "Placer",
+      "Quietud",
+      "Relajación"
     ]
   },
   {
     category: "3 Empatía",
     items: [
-  "Aceptación",
-  "Amor",
-  "Cariño",
-  "Compasión",
-  "Comprensión",
-  "Conexión",
-  "Consideración",
-  "Cuidado",
-  "Intimidad",
-  "Reconocimiento",
-  "Ser Escuchada",
-  "Ser Querida",
-  "Ser Vista",
-  "Validación"
-    ]
+      "Aceptación",
+      "Amor",
+      "Apreciación",
+      "Cariño",
+      "Compasión",
+      "Compañía",
+      "Comprensión",
+      "Comunicación",
+      "Conexión",
+      "Consideración",
+      "Contacto físico",
+      "Cuidado",
+      "Intimidad",
+      "Reconocimiento",
+      "Ser Escuchada",
+      "Ser Querida",
+      "Ser Vista",
+      "Validación"
+	  ]
   },
   {
     category: "4 Interdependencia",
     items: [
-  "Apoyo mutuo",
-  "Comunidad",
-  "Cooperación",
-  "Inclusión",
-  "Participación",
-  "Pertenencia",
-  "Reciprocidad"
+      "Apoyo mutuo",
+      "Comunidad",
+      "Cooperación",
+      "Espiritualidad",
+      "Igualdad",
+      "Inclusión",
+      "Participación",
+      "Pertenencia",
+      "Reciprocidad"
     ]
   },
   {
     category: "5 Protección",
     items: [
-"Estabilidad",
-  "Justicia",
-  "Seguridad",
-  "Ser Respetada"  
-  ]
+      "Estabilidad",
+      "Justicia",
+      "Orden-Estructura",
+      "Seguridad",
+      "Ser Respetada"
+          ]
   },
   {
     category: "6 Supervivencia",
     items: [
-"Aire/agua/alimento",
-  "Estímulo sensorial",
-  "Luz Solar",
-  "Procreación",
-  "Sustento"
+      "Aire/agua/alimento",
+      "Estímulo sensorial",
+      "Luz Solar",
+      "Movimiento",
+      "Procreación",
+      "Refugio",
+      "Sustento"
     ]
   },
   {
     category: "7 Sentido",
     items: [
-  "Contribución",
-  "Habilidad",
-  "Integridad",
-  "Propósito"    ]
+      "Contribución",
+      "Habilidad",
+      "Integridad",
+      "Propósito",
+      "Reto"
+    ]
   },
   {
     category: "8 Autonomía",
@@ -92,23 +108,30 @@ export const needs = [
   "Poder con"    ]
   },
   {
-    category: "9 Honestidad",
+    category: "9 Autenticidad",
     items: [
-  "Aprendizaje",
-  "Autenticidad",
-  "Autoconexión",
-  "Claridad",
-  "Expresión personal"    ]
+      "Aprendizaje",
+      "Autenticidad",
+      "Autoconexión",
+      "Claridad",
+      "Crecimiento",
+      "Descubrimiento",
+      "Dignidad",
+      "Exploración",
+      "Expresión personal",
+      "Poder interior"
+    ]
   },
   {
     category: "10 Bienestar",
     items: [
- "Comodidad",
-  "Confianza",
-  "Curación",
-  "Equilibrio",
-  "Paz",
-  "Salud"
+      "Comodidad",
+      "Confianza",
+      "Curación",
+      "Equilibrio",
+      "Paz",
+      "Salud",
+      "Vitalidad"
     ]
   }
 ];
