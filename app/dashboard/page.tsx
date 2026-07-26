@@ -65,7 +65,7 @@ function ObservationStep({
   onChange: (value: string) => void;
 }) {
   return (
-    <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
+    <Card className="p-2 dark:bg-slate-800 dark:border-slate-700">
       <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Observación</h2>
       <p className="text-gray-600 dark:text-gray-400 mb-4">
         ¿Qué acontecimiento desencadena tu vivencia? Identifica de manera objetiva
@@ -131,7 +131,7 @@ function FeelingsStep({
   );
 
   return (
-    <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
+    <Card className="p-2 dark:bg-slate-800 dark:border-slate-700">
       <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Sentimientos</h2>
       <p className="text-gray-600 dark:text-gray-400 mb-6">
         ¿Qué emociones o sentimientos son activados en ti? Reconoce y nombra
@@ -265,7 +265,7 @@ function NeedsStep({
   const totalFiltered = filteredNeeds.reduce((t, cat) => t + cat.items.length, 0);
 
   return (
-    <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
+    <Card className="p-2 dark:bg-slate-800 dark:border-slate-700">
       <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Necesidades</h2>
       <p className="text-gray-600 dark:text-gray-400 mb-6">
         ¿Qué necesidades activan estos sentimientos? Conecta con la necesidad
@@ -368,7 +368,7 @@ function RequestStep({
   };
 
   return (
-    <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
+    <Card className="p-2 dark:bg-slate-800 dark:border-slate-700">
       <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Petición</h2>
       <p className="text-gray-600 dark:text-gray-400 mb-4">
         ¿Qué acciones o estrategias específicas quisiera que se realizaran ahora?
@@ -491,9 +491,9 @@ function SummaryStep({ formData }: { formData: any }) {
   });
 
   return (
-    <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
+    <Card className="p-2 dark:bg-slate-800 dark:border-slate-700">
       {/* Versión visible en pantalla — respeta el modo oscuro para no encandilar */}
-      <div className="bg-white dark:bg-slate-900 p-6 rounded-lg">
+      <div className="bg-white dark:bg-slate-900 p-2 rounded-lg">
         {/* Header */}
         <div className="text-center mb-6 pb-4 border-b-2 border-blue-500">
           <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">Mi Conexión Interna</h1>
@@ -755,7 +755,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-slate-100 dark:bg-slate-900 p-0 transition-colors">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         {/* Indicador de pasos */}
         <div className="flex justify-between mb-8">
           {steps.map((step, index) => (
