@@ -65,9 +65,9 @@ function ObservationStep({
   onChange: (value: string) => void;
 }) {
   return (
-    <Card className="p-6">
+    <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
       <h2 className="text-2xl font-bold mb-4">Observación</h2>
-      <p className="text-gray-600 mb-4">
+      <p className="text-gray-600 dark:text-gray-400 mb-4">
         ¿Qué acontecimiento desencadena tu vivencia? Identifica de manera objetiva
         qué viste, escuchaste o recordaste que activó tu reacción.
       </p>
@@ -131,16 +131,16 @@ function FeelingsStep({
   );
 
   return (
-    <Card className="p-6">
+    <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
       <h2 className="text-2xl font-bold mb-4">Sentimientos</h2>
-      <p className="text-gray-600 mb-6">
+      <p className="text-gray-600 dark:text-gray-400 mb-6">
         ¿Qué emociones o sentimientos son activados en ti? Reconoce y nombra
         cómo te sientes, sin juzgarte.
       </p>
 
       <div className="mb-6 relative">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" />
           <Input
             type="text"
             placeholder="Buscar sentimientos... (ej: tristeza, alegría, frustración)"
@@ -151,14 +151,14 @@ function FeelingsStep({
           {searchTerm && (
             <button
               onClick={() => setSearchTerm("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:text-gray-400"
             >
               <X className="h-4 w-4" />
             </button>
           )}
         </div>
         {searchTerm && (
-          <div className="mt-2 text-sm text-gray-500">
+          <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
             {totalFiltered > 0
               ? `${totalFiltered} sentimiento${totalFiltered !== 1 ? "s" : ""} encontrado${totalFiltered !== 1 ? "s" : ""}`
               : "No se encontraron sentimientos"}
@@ -176,7 +176,7 @@ function FeelingsStep({
               <span
                 key={f}
                 onClick={() => toggleFeeling(f)}
-                className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-blue-200 transition-colors"
+                className="bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-blue-200 transition-colors"
               >
                 {f} ×
               </span>
@@ -186,16 +186,16 @@ function FeelingsStep({
       )}
 
       {Object.keys(filteredFeelings).length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-gray-500 dark:text-gray-400">
           No se encontraron sentimientos que coincidan con "{searchTerm}"
         </div>
       ) : (
         Object.entries(filteredFeelings).map(([mainCat, cats]) => (
           <div key={mainCat} className="mb-8">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">{mainCat}</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">{mainCat}</h3>
             {Object.entries(cats as Record<string, string[]>).map(([cat, list]) => (
               <div key={cat} className="feeling-category mb-6">
-                <h4 className="text-lg font-medium mb-3 text-gray-700">{cat}</h4>
+                <h4 className="text-lg font-medium mb-3 text-gray-700 dark:text-gray-300">{cat}</h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                   {list.map((feeling) => (
                     <div
@@ -203,8 +203,8 @@ function FeelingsStep({
                       onClick={() => toggleFeeling(feeling)}
                       className={`cursor-pointer px-4 py-2 rounded-full text-center text-sm font-medium transition-all duration-200 transform hover:scale-105 ${
                         selectedFeelings.includes(feeling)
-                          ? "bg-blue-100 text-blue-800 shadow-md border border-blue-400 scale-105"
-                          : "bg-white text-gray-700 shadow-sm hover:shadow-md border border-gray-300 hover:border-blue-300"
+                          ? "bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 shadow-md border border-blue-400 scale-105"
+                          : "bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-200 shadow-sm hover:shadow-md border border-gray-300 dark:border-slate-600 hover:border-blue-300"
                       }`}
                     >
                       {feeling}
@@ -265,16 +265,16 @@ function NeedsStep({
   const totalFiltered = filteredNeeds.reduce((t, cat) => t + cat.items.length, 0);
 
   return (
-    <Card className="p-6">
+    <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
       <h2 className="text-2xl font-bold mb-4">Necesidades</h2>
-      <p className="text-gray-600 mb-6">
+      <p className="text-gray-600 dark:text-gray-400 mb-6">
         ¿Qué necesidades activan estos sentimientos? Conecta con la necesidad
         profunda que hay detrás de tu emoción.
       </p>
 
       <div className="mb-6 relative">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" />
           <Input
             type="text"
             placeholder="Buscar necesidades... (ej: comprensión, autonomía, conexión)"
@@ -285,14 +285,14 @@ function NeedsStep({
           {searchTerm && (
             <button
               onClick={() => setSearchTerm("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:text-gray-400"
             >
               <X className="h-4 w-4" />
             </button>
           )}
         </div>
         {searchTerm && (
-          <div className="mt-2 text-sm text-gray-500">
+          <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
             {totalFiltered > 0
               ? `${totalFiltered} necesidad${totalFiltered !== 1 ? "es" : ""} encontrada${totalFiltered !== 1 ? "s" : ""}`
               : "No se encontraron necesidades"}
@@ -310,7 +310,7 @@ function NeedsStep({
               <span
                 key={n}
                 onClick={() => toggleNeed(n)}
-                className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-green-200 transition-colors"
+                className="bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-green-200 transition-colors"
               >
                 {n} ×
               </span>
@@ -320,13 +320,13 @@ function NeedsStep({
       )}
 
       {filteredNeeds.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-gray-500 dark:text-gray-400">
           No se encontraron necesidades que coincidan con "{searchTerm}"
         </div>
       ) : (
         filteredNeeds.map((cat) => (
           <div key={cat.category} className="feeling-category mb-6">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">{cat.category}</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">{cat.category}</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {cat.items.map((need) => (
                 <div
@@ -334,8 +334,8 @@ function NeedsStep({
                   onClick={() => toggleNeed(need)}
                   className={`cursor-pointer px-4 py-2 rounded-full text-center text-sm font-medium transition-all duration-200 transform hover:scale-105 ${
                     selectedNeeds.includes(need)
-                      ? "bg-green-100 text-green-800 shadow-md border border-green-400 scale-105"
-                      : "bg-white text-gray-700 shadow-sm hover:shadow-md border border-gray-300 hover:border-green-300"
+                      ? "bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 shadow-md border border-green-400 scale-105"
+                      : "bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-200 shadow-sm hover:shadow-md border border-gray-300 dark:border-slate-600 hover:border-green-300"
                   }`}
                 >
                   {need}
@@ -368,9 +368,9 @@ function RequestStep({
   };
 
   return (
-    <Card className="p-6">
+    <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
       <h2 className="text-2xl font-bold mb-4">Petición</h2>
-      <p className="text-gray-600 mb-4">
+      <p className="text-gray-600 dark:text-gray-400 mb-4">
         ¿Qué acciones o estrategias específicas quisiera que se realizaran ahora?
         Identifica qué podrías pedirte a ti mismo o a otros para cuidar de tu necesidad.
       </p>
@@ -385,7 +385,7 @@ function RequestStep({
       </div>
       <div className="space-y-2">
         {requests.map((request, index) => (
-          <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+          <div key={index} className="flex items-center justify-between p-2 bg-gray-50 dark:bg-slate-700/50 rounded">
             <span>{request}</span>
             <Button
               variant="ghost"
@@ -484,7 +484,7 @@ function SummaryStep({ formData }: { formData: any }) {
   };
 
   return (
-    <Card className="p-6">
+    <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
       {/* Contenido que se convierte en imagen */}
       <div ref={summaryRef} className="bg-white p-6 rounded-lg">
         {/* Header */}
@@ -683,7 +683,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen gradient-bg p-4">
+    <div className="min-h-screen gradient-bg dark:bg-slate-900 p-4 transition-colors">
       <div className="max-w-4xl mx-auto">
         {/* Indicador de pasos */}
         <div className="flex justify-between mb-8">
@@ -691,7 +691,7 @@ export default function DashboardPage() {
             <div
               key={step}
               className={`text-sm ${
-                index === currentStep ? "text-blue-600 font-bold" : "text-gray-400"
+                index === currentStep ? "text-blue-600 dark:text-blue-400 font-bold" : "text-gray-400 dark:text-gray-500"
               }`}
             >
               {step}
