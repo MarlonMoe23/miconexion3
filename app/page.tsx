@@ -25,7 +25,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen gradient-bg dark:bg-slate-900 flex flex-col items-center justify-center p-4 transition-colors">
+    <main className="min-h-screen bg-slate-100 dark:bg-slate-900 flex flex-col items-center justify-center p-4 transition-colors">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export default function Home() {
           "¿Qué parte dentro de ti quiere ser escuchada hoy?"
         </p>
 
-        <Card className="p-6 mb-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
+        <Card className="p-6 mb-8 bg-white/80 dark:bg-slate-800/80 border-gray-200 dark:border-slate-700 backdrop-blur-sm">
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
             Un espacio seguro para reconectar contigo mismo, escuchando tus
             sentimientos y necesidades con compasión.
@@ -74,8 +74,8 @@ export default function Home() {
               </button>
             </div>
             {gender && (
-              <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
-                Perfil guardado: <strong>{gender}</strong>
+              <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
+                Perfil guardado: <strong className="text-gray-700 dark:text-gray-300">{gender}</strong>
               </p>
             )}
           </div>
@@ -84,8 +84,8 @@ export default function Home() {
             <Button
               className={`w-full md:w-auto button-hover text-white transition-opacity ${
                 gender
-                  ? "bg-gradient-to-r from-blue-500 to-purple-500"
-                  : "bg-gray-300 dark:bg-slate-600 pointer-events-none cursor-not-allowed"
+                  ? "bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600"
+                  : "bg-gray-300 dark:bg-slate-600 text-gray-500 dark:text-gray-400 pointer-events-none cursor-not-allowed"
               }`}
               size="lg"
               disabled={!gender}
@@ -95,7 +95,7 @@ export default function Home() {
           </Link>
 
           {!gender && (
-            <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
+            <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
               Selecciona un perfil para continuar
             </p>
           )}
@@ -109,8 +109,8 @@ export default function Home() {
         >
           <p>Basado en los principios de la Comunicación No Violenta (CNV)</p>
           <div className="pt-4 border-t border-gray-200 dark:border-slate-700">
-            <p className="font-medium">Version 4.0</p>
-            <p className="font-medium">Desarrollado por Marlon Ortiz</p>
+            <p className="font-medium text-gray-700 dark:text-gray-300">Version 4.0</p>
+            <p className="font-medium text-gray-700 dark:text-gray-300">Desarrollado por Marlon Ortiz</p>
           </div>
         </motion.div>
       </motion.div>
