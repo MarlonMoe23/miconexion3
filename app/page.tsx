@@ -25,30 +25,30 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen gradient-bg flex flex-col items-center justify-center p-4">
+    <main className="min-h-screen gradient-bg dark:bg-slate-900 flex flex-col items-center justify-center p-4 transition-colors">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="text-center max-w-2xl mx-auto"
       >
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
           Mi Conexión Interna
         </h1>
 
-        <p className="italic text-gray-600 mb-4">
+        <p className="italic text-gray-600 dark:text-gray-400 mb-4">
           "¿Qué parte dentro de ti quiere ser escuchada hoy?"
         </p>
 
-        <Card className="p-6 mb-8 bg-white/80 backdrop-blur-sm">
-          <p className="text-lg text-gray-700 mb-6">
+        <Card className="p-6 mb-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm">
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
             Un espacio seguro para reconectar contigo mismo, escuchando tus
             sentimientos y necesidades con compasión.
           </p>
 
           {/* Selección de género */}
           <div className="mb-6">
-            <p className="text-sm font-medium text-gray-600 mb-3">
+            <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">
               Selecciona tu perfil:
             </p>
             <div className="flex gap-3 justify-center">
@@ -57,7 +57,7 @@ export default function Home() {
                 className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 border-2 ${
                   gender === "hombre"
                     ? "bg-blue-500 text-white border-blue-500 shadow-md scale-105"
-                    : "bg-white text-gray-700 border-gray-300 hover:border-blue-400 hover:shadow"
+                    : "bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-slate-600 hover:border-blue-400 hover:shadow"
                 }`}
               >
                 Hombre
@@ -67,14 +67,14 @@ export default function Home() {
                 className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 border-2 ${
                   gender === "mujer"
                     ? "bg-purple-500 text-white border-purple-500 shadow-md scale-105"
-                    : "bg-white text-gray-700 border-gray-300 hover:border-purple-400 hover:shadow"
+                    : "bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-slate-600 hover:border-purple-400 hover:shadow"
                 }`}
               >
                 Mujer
               </button>
             </div>
             {gender && (
-              <p className="text-xs text-gray-400 mt-2">
+              <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
                 Perfil guardado: <strong>{gender}</strong>
               </p>
             )}
@@ -85,7 +85,7 @@ export default function Home() {
               className={`w-full md:w-auto button-hover text-white transition-opacity ${
                 gender
                   ? "bg-gradient-to-r from-blue-500 to-purple-500"
-                  : "bg-gray-300 pointer-events-none cursor-not-allowed"
+                  : "bg-gray-300 dark:bg-slate-600 pointer-events-none cursor-not-allowed"
               }`}
               size="lg"
               disabled={!gender}
@@ -95,7 +95,7 @@ export default function Home() {
           </Link>
 
           {!gender && (
-            <p className="text-xs text-gray-400 mt-2">
+            <p className="text-xs text-gray-400 dark:text-gray-500 mt-2">
               Selecciona un perfil para continuar
             </p>
           )}
@@ -105,10 +105,10 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-sm text-gray-600 space-y-2"
+          className="text-sm text-gray-600 dark:text-gray-400 space-y-2"
         >
           <p>Basado en los principios de la Comunicación No Violenta (CNV)</p>
-          <div className="pt-4 border-t border-gray-200">
+          <div className="pt-4 border-t border-gray-200 dark:border-slate-700">
             <p className="font-medium">Version 4.0</p>
             <p className="font-medium">Desarrollado por Marlon Ortiz</p>
           </div>
