@@ -787,8 +787,8 @@ export default function DashboardPage() {
       </div>
 
       {/* Barra de navegación fija — siempre visible, incluso con listas largas de Sentimientos/Necesidades */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-t border-gray-200 dark:border-slate-700 p-1">
-        <div className="max-w-4xl mx-auto flex justify-center gap-9">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-t border-gray-200 dark:border-slate-700 p-2">
+        <div className="max-w-4xl mx-auto flex justify-center gap-2">
           {currentStep > 0 && (
             <Button
               onClick={() => setCurrentStep((p) => p - 1)}
