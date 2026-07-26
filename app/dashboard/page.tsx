@@ -754,7 +754,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 dark:bg-slate-900 p-4 transition-colors">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-900 p-0 transition-colors">
       <div className="max-w-4xl mx-auto">
         {/* Indicador de pasos */}
         <div className="flex justify-between mb-8">
