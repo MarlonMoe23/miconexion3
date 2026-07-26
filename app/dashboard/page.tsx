@@ -381,7 +381,7 @@ function RequestStep({
           placeholder="Escribe una petición o estrategia concreta y realizable..."
           className="mb-2"
         />
-        <Button onClick={addRequest}>Agregar Petición o Estrategia</Button>
+        <Button onClick={addRequest} className="bg-blue-600 hover:bg-blue-700 text-white">Agregar Petición o Estrategia</Button>
       </div>
       <div className="space-y-2">
         {requests.map((request, index) => (
@@ -391,7 +391,7 @@ function RequestStep({
               variant="ghost"
               size="sm"
               onClick={() => onChange(requests.filter((_, i) => i !== index))}
-              className="text-red-500"
+              className="text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40"
             >
               Eliminar
             </Button>
@@ -790,11 +790,15 @@ export default function DashboardPage() {
       <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-t border-gray-200 dark:border-slate-700 p-4">
         <div className="max-w-4xl mx-auto flex justify-center gap-4">
           {currentStep > 0 && (
-            <Button onClick={() => setCurrentStep((p) => p - 1)} variant="outline">
+            <Button
+              onClick={() => setCurrentStep((p) => p - 1)}
+              variant="outline"
+              className="border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800"
+            >
               Atrás
             </Button>
           )}
-          <Button onClick={handleNext}>
+          <Button onClick={handleNext} className="bg-blue-600 hover:bg-blue-700 text-white">
             {currentStep === steps.length - 1 ? "Finalizar" : "Siguiente"}
           </Button>
         </div>
