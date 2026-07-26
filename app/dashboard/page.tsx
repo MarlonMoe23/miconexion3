@@ -66,7 +66,7 @@ function ObservationStep({
 }) {
   return (
     <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
-      <h2 className="text-2xl font-bold mb-4">Observación</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Observación</h2>
       <p className="text-gray-600 dark:text-gray-400 mb-4">
         ¿Qué acontecimiento desencadena tu vivencia? Identifica de manera objetiva
         qué viste, escuchaste o recordaste que activó tu reacción.
@@ -132,7 +132,7 @@ function FeelingsStep({
 
   return (
     <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
-      <h2 className="text-2xl font-bold mb-4">Sentimientos</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Sentimientos</h2>
       <p className="text-gray-600 dark:text-gray-400 mb-6">
         ¿Qué emociones o sentimientos son activados en ti? Reconoce y nombra
         cómo te sientes, sin juzgarte.
@@ -168,7 +168,7 @@ function FeelingsStep({
 
       {selectedFeelings.length > 0 && (
         <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3">
+          <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
             Sentimientos seleccionados ({selectedFeelings.length})
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -266,7 +266,7 @@ function NeedsStep({
 
   return (
     <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
-      <h2 className="text-2xl font-bold mb-4">Necesidades</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Necesidades</h2>
       <p className="text-gray-600 dark:text-gray-400 mb-6">
         ¿Qué necesidades activan estos sentimientos? Conecta con la necesidad
         profunda que hay detrás de tu emoción.
@@ -302,7 +302,7 @@ function NeedsStep({
 
       {selectedNeeds.length > 0 && (
         <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3">
+          <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
             Necesidades seleccionadas ({selectedNeeds.length})
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -369,7 +369,7 @@ function RequestStep({
 
   return (
     <Card className="p-6 dark:bg-slate-800 dark:border-slate-700">
-      <h2 className="text-2xl font-bold mb-4">Petición</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Petición</h2>
       <p className="text-gray-600 dark:text-gray-400 mb-4">
         ¿Qué acciones o estrategias específicas quisiera que se realizaran ahora?
         Identifica qué podrías pedirte a ti mismo o a otros para cuidar de tu necesidad.
@@ -683,7 +683,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen gradient-bg dark:bg-slate-900 p-4 transition-colors">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-900 p-4 transition-colors">
       <div className="max-w-4xl mx-auto">
         {/* Indicador de pasos */}
         <div className="flex justify-between mb-8">
