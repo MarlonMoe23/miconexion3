@@ -793,7 +793,7 @@ export default function DashboardPage() {
             <Button
               onClick={() => setCurrentStep((p) => p - 1)}
               variant="outline"
-              className="border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800"
+              className="bg-transparent border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800"
             >
               Atrás
             </Button>
