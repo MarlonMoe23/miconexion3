@@ -133,5 +133,30 @@ export const needs = [
       "Salud",
       "Vitalidad"
     ]
+  },
+{
+    category: "11 Importantes",
+    items: [
+      "Aceptación",
+"Apoyo y Cuidado",
+"Atención",
+"Autonomía y Elección",
+"Cariño y Afecto",
+"Comprensión",
+"Compromiso y Estabilidad",
+"Conexión y Intimidad",
+"Confianza",
+"Consideración",
+"Contribución",
+"Diversion",
+"Honestidad y Autenticidad",
+"Pertenencia",
+"Presencia",
+"Protección",
+"Reciprocidad",
+"Reconocimiento y valoración (ser vista y escuchada)",
+"Respeto",
+"Seguridad emocional"
+    ]
   }
 ];
