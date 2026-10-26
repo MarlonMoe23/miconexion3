@@ -154,7 +154,7 @@ export const needs = [
 "Presencia",
 "Protección",
 "Reciprocidad",
-"Reconocimiento y valoración (ser vista y escuchada)",
+"Reconocimiento y valoración (ser visto y escuchado)",
 "Respeto",
 "Seguridad emocional"
     ]
