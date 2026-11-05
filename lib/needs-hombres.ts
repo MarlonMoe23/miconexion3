@@ -142,6 +142,7 @@ export const needs = [
 "Atención",
 "Autonomía y Elección",
 "Cariño y Afecto",
+"Compañia",
 "Comprensión",
 "Compromiso y Estabilidad",
 "Conexión y Intimidad",
