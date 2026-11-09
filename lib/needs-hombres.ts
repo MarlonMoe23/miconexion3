@@ -11,7 +11,10 @@ export const needs = [
       "Inspiración",
       "Naturaleza",
       "Presencia",
-      "Sanación"
+      "Sanación",
+      "Fe",
+      "Comunión",
+      "Conciencia"
     ]
   },
   {
@@ -26,7 +29,9 @@ export const needs = [
       "Juego",
       "Placer",
       "Quietud",
-      "Relajación"
+      "Relajación",
+      "Diversión",
+      "Gozo"
     ]
   },
   {
@@ -49,8 +54,18 @@ export const needs = [
       "Ser Escuchado",
       "Ser Querido",
       "Ser Visto",
-      "Validación"
-	  ]
+      "Validación",
+      "Afecto",
+      "Amabilidad",
+      "Apoyo",
+      "Calidez",
+      "Cercanía",
+      "Empatía",
+      "Expresión sexual",
+      "Ser Entendido",
+      "Ser Nutrido",
+      "Ternura"
+    ]
   },
   {
     category: "4 Interdependencia",
@@ -63,7 +78,8 @@ export const needs = [
       "Inclusión",
       "Participación",
       "Pertenencia",
-      "Reciprocidad"
+      "Reciprocidad",
+      "Compartir"
     ]
   },
   {
@@ -73,8 +89,10 @@ export const needs = [
       "Justicia",
       "Orden-Estructura",
       "Seguridad",
-      "Ser Respetado"
-          ]
+      "Ser Respetado",
+      "Protección",
+      "Seguridad emocional"
+    ]
   },
   {
     category: "6 Supervivencia",
@@ -101,11 +119,14 @@ export const needs = [
   {
     category: "8 Autonomía",
     items: [
-  "Creatividad",
-  "Darse poder",
-  "Elección",
-  "Libertad",
-  "Poder con"    ]
+      "Creatividad",
+      "Darse poder",
+      "Elección",
+      "Libertad",
+      "Poder con",
+      "Autonomía",
+      "Espontaneidad"
+    ]
   },
   {
     category: "9 Autenticidad",
@@ -119,7 +140,10 @@ export const needs = [
       "Dignidad",
       "Exploración",
       "Expresión personal",
-      "Poder interior"
+      "Poder interior",
+      "Autoconocimiento",
+      "Discernimiento",
+      "Honestidad"
     ]
   },
   {
@@ -134,30 +158,30 @@ export const needs = [
       "Vitalidad"
     ]
   },
-{
+  {
     category: "11 Importantes",
     items: [
       "Aceptación",
-"Apoyo y Cuidado",
-"Atención",
-"Autonomía y Elección",
-"Cariño y Afecto",
-"Compañia",
-"Comprensión",
-"Compromiso y Estabilidad",
-"Conexión y Intimidad",
-"Confianza",
-"Consideración",
-"Contribución",
-"Diversion",
-"Honestidad y Autenticidad",
-"Pertenencia",
-"Presencia",
-"Protección",
-"Reciprocidad",
-"Reconocimiento y valoración (ser visto y escuchado)",
-"Respeto",
-"Seguridad emocional"
+      "Apoyo y Cuidado",
+      "Atención",
+      "Autonomía y Elección",
+      "Cariño y Afecto",
+      "Compañía",
+      "Comprensión",
+      "Compromiso y Estabilidad",
+      "Conexión y Intimidad",
+      "Confianza",
+      "Consideración",
+      "Contribución",
+      "Diversión",
+      "Honestidad y Autenticidad",
+      "Pertenencia",
+      "Presencia",
+      "Protección",
+      "Reciprocidad",
+      "Reconocimiento y valoración (ser visto y escuchado)",
+      "Respeto",
+      "Seguridad emocional"
     ]
   }
 ];
