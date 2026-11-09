@@ -7,7 +7,17 @@ export const feelings = {
       "Resentido",
       "Irritado",
       "Molesto",
-      "Rabioso"
+      "Rabioso",
+      "Furioso",
+      "Enfurecido",
+      "Alterado",
+      "Fastidiado",
+      "Malhumorado",
+      "Rencoroso",
+      "Exasperado",
+      "Enfadado",
+      "Insatisfecho",
+      "Amargado"
     ],
     "2 Tristeza y Melancolía": [
       "Triste",
@@ -17,7 +27,26 @@ export const feelings = {
       "Desesperado",
       "Deprimido",
       "Melancólico",
-      "Solo"
+      "Solo",
+      "Abatido",
+      "Afligido",
+      "Desanimado",
+      "Desalentado",
+      "Descorazonado",
+      "Desilusionado",
+      "Desencantado",
+      "Desengañado",
+      "Desmoralizado",
+      "Desesperanzado",
+      "Decaído",
+      "Desolado",
+      "Desdichado",
+      "Destrozado",
+      "Devastado",
+      "Acongojado",
+      "Arrepentido",
+      "Nostálgico",
+      "Derrotado"
     ],
     "3 Miedo y Ansiedad": [
       "Ansioso",
@@ -25,7 +54,19 @@ export const feelings = {
       "Nervioso",
       "Temeroso",
       "Paralizado",
-      "Impaciente"
+      "Impaciente",
+      "Angustiado",
+      "Atemorizado",
+      "Aterrado",
+      "Alarmado",
+      "Sobresaltado",
+      "Intranquilo",
+      "Inquieto",
+      "Agitado",
+      "Perturbado",
+      "Consternado",
+      "Aprensivo",
+      "Pesimista"
     ],
     "4 Confusión e Incertidumbre": [
       "Confuso",
@@ -33,21 +74,41 @@ export const feelings = {
       "Desconcertado",
       "Preocupado",
       "Indeciso",
-      "Dividido"
+      "Dividido",
+      "Perplejo",
+      "Aturdido",
+      "Trastornado",
+      "Distraído",
+      "Vacilante",
+      "Ambivalente",
+      "Renuente",
+      "Incrédulo",
+      "Escéptico"
     ],
     "5 Agotamiento": [
       "Agotado",
       "Cansado",
       "Exhausto",
       "Aburrido",
-      "Saturado"
+      "Saturado",
+      "Fatigado",
+      "Apagado",
+      "Débil",
+      "Somnoliento",
+      "Aletargado"
     ],
     "6 Inseguridad": [
       "Inseguro",
       "Vulnerable",
       "Avergonzado",
       "Frágil",
-      "Herido"
+      "Herido",
+      "Apenado",
+      "Mortificado",
+      "Sensible",
+      "Susceptible",
+      "Impotente",
+      "Reservado"
     ],
     "7 Tensión y Sobrecarga": [
       "Abrumado",
@@ -55,6 +116,22 @@ export const feelings = {
       "Tenso",
       "Incómodo",
       "Agobiado"
+    ],
+    "8 Aversión": [
+      "Disgustado",
+      "Hastiado",
+      "Asqueado",
+      "Escandalizado",
+      "Horrorizado",
+      "Hostil"
+    ],
+    "9 Desconexión": [
+      "Desconectado",
+      "Distante",
+      "Retraído",
+      "Apático",
+      "Indiferente",
+      "Frío"
     ]
   },
   "Cuando mis necesidades están satisfechas": {
@@ -65,7 +142,16 @@ export const feelings = {
       "Satisfecho",
       "Emocionado",
       "Esperanzado",
-      "Realizado"
+      "Realizado",
+      "Gozoso",
+      "Dichoso",
+      "Eufórico",
+      "Deleitado",
+      "Regocijado",
+      "Divertido",
+      "Radiante",
+      "Optimista",
+      "Expectante"
     ],
     "2 Serenidad y Calma": [
       "Tranquilo",
@@ -73,33 +159,64 @@ export const feelings = {
       "En paz",
       "Sereno",
       "Agradecido",
-      "Aliviado"
+      "Aliviado",
+      "Calmado",
+      "Ecuánime",
+      "Centrado",
+      "Cómodo",
+      "Pleno",
+      "Despejado",
+      "Liberado",
+      "Apreciativo"
     ],
     "3 Amor y Afecto": [
       "Amoroso",
       "Cariñoso",
       "Tierno",
       "Cálido",
-      "Compasivo"
+      "Compasivo",
+      "Conmovido",
+      "Con el corazón abierto",
+      "Abierto"
     ],
     "4 Energía y Vitalidad": [
       "Energético",
       "Vital",
       "Vibrante",
       "Fortalecido",
-      "Animado"
+      "Animado",
+      "Vivo",
+      "Apasionado",
+      "Renovado",
+      "Revitalizado",
+      "Restaurado",
+      "Rejuvenecido"
     ],
     "5 Confianza": [
       "Seguro",
       "Motivado",
       "Capaz",
-      "Orgulloso"
+      "Orgulloso",
+      "Valiente",
+      "Empoderado"
     ],
     "6 Curiosidad e Interés": [
       "Curioso",
       "Entusiasmado",
       "Asombrado",
-      "Inspirado"
+      "Inspirado",
+      "Interesado",
+      "Fascinado",
+      "Cautivado",
+      "Intrigado",
+      "Encantado",
+      "Estimulado",
+      "Involucrado",
+      "Alerta",
+      "Deslumbrado",
+      "Maravillado",
+      "Admirado",
+      "Sorprendido"
     ]
   }
 };

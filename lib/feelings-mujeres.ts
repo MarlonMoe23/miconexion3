@@ -7,7 +7,17 @@ export const feelings = {
       "Resentida",
       "Irritada",
       "Molesta",
-      "Rabiosa"
+      "Rabiosa",
+      "Furiosa",
+      "Enfurecida",
+      "Alterada",
+      "Fastidiada",
+      "Malhumorada",
+      "Rencorosa",
+      "Exasperada",
+      "Enfadada",
+      "Insatisfecha",
+      "Amargada"
     ],
     "2 Tristeza y Melancolía": [
       "Triste",
@@ -17,7 +27,26 @@ export const feelings = {
       "Desesperada",
       "Deprimida",
       "Melancólica",
-      "Sola"
+      "Sola",
+      "Abatida",
+      "Afligida",
+      "Desanimada",
+      "Desalentada",
+      "Descorazonada",
+      "Desilusionada",
+      "Desencantada",
+      "Desengañada",
+      "Desmoralizada",
+      "Desesperanzada",
+      "Decaída",
+      "Desolada",
+      "Desdichada",
+      "Destrozada",
+      "Devastada",
+      "Acongojada",
+      "Arrepentida",
+      "Nostálgica",
+      "Derrotada"
     ],
     "3 Miedo y Ansiedad": [
       "Ansiosa",
@@ -25,7 +54,19 @@ export const feelings = {
       "Nerviosa",
       "Temerosa",
       "Paralizada",
-      "Impaciente"
+      "Impaciente",
+      "Angustiada",
+      "Atemorizada",
+      "Aterrada",
+      "Alarmada",
+      "Sobresaltada",
+      "Intranquila",
+      "Inquieta",
+      "Agitada",
+      "Perturbada",
+      "Consternada",
+      "Aprensiva",
+      "Pesimista"
     ],
     "4 Confusión e Incertidumbre": [
       "Confusa",
@@ -33,21 +74,41 @@ export const feelings = {
       "Desconcertada",
       "Preocupada",
       "Indecisa",
-      "Dividida"
+      "Dividida",
+      "Perpleja",
+      "Aturdida",
+      "Trastornada",
+      "Distraída",
+      "Vacilante",
+      "Ambivalente",
+      "Renuente",
+      "Incrédula",
+      "Escéptica"
     ],
     "5 Agotamiento": [
       "Agotada",
       "Cansada",
       "Exhausta",
       "Aburrida",
-      "Saturada"
+      "Saturada",
+      "Fatigada",
+      "Apagada",
+      "Débil",
+      "Somnolienta",
+      "Aletargada"
     ],
     "6 Inseguridad": [
       "Insegura",
       "Vulnerable",
       "Avergonzada",
       "Frágil",
-      "Herida"
+      "Herida",
+      "Apenada",
+      "Mortificada",
+      "Sensible",
+      "Susceptible",
+      "Impotente",
+      "Reservada"
     ],
     "7 Tensión y Sobrecarga": [
       "Abrumada",
@@ -55,6 +116,22 @@ export const feelings = {
       "Tensa",
       "Incómoda",
       "Agobiada"
+    ],
+    "8 Aversión": [
+      "Disgustada",
+      "Hastiada",
+      "Asqueada",
+      "Escandalizada",
+      "Horrorizada",
+      "Hostil"
+    ],
+    "9 Desconexión": [
+      "Desconectada",
+      "Distante",
+      "Retraída",
+      "Apática",
+      "Indiferente",
+      "Fría"
     ]
   },
   "Cuando mis necesidades están satisfechas": {
@@ -65,7 +142,16 @@ export const feelings = {
       "Satisfecha",
       "Emocionada",
       "Esperanzada",
-      "Realizada"
+      "Realizada",
+      "Gozosa",
+      "Dichosa",
+      "Eufórica",
+      "Deleitada",
+      "Regocijada",
+      "Divertida",
+      "Radiante",
+      "Optimista",
+      "Expectante"
     ],
     "2 Serenidad y Calma": [
       "Tranquila",
@@ -73,33 +159,64 @@ export const feelings = {
       "En paz",
       "Serena",
       "Agradecida",
-      "Aliviada"
+      "Aliviada",
+      "Calmada",
+      "Ecuánime",
+      "Centrada",
+      "Cómoda",
+      "Plena",
+      "Despejada",
+      "Liberada",
+      "Apreciativa"
     ],
     "3 Amor y Afecto": [
       "Amorosa",
       "Cariñosa",
       "Tierna",
       "Cálida",
-      "Compasiva"
+      "Compasiva",
+      "Conmovida",
+      "Con el corazón abierto",
+      "Abierta"
     ],
     "4 Energía y Vitalidad": [
       "Energética",
       "Vital",
       "Vibrante",
       "Fortalecida",
-      "Animada"
+      "Animada",
+      "Viva",
+      "Apasionada",
+      "Renovada",
+      "Revitalizada",
+      "Restaurada",
+      "Rejuvenecida"
     ],
     "5 Confianza": [
       "Segura",
       "Motivada",
       "Capaz",
-      "Orgullosa"
+      "Orgullosa",
+      "Valiente",
+      "Empoderada"
     ],
     "6 Curiosidad e Interés": [
       "Curiosa",
       "Entusiasmada",
       "Asombrada",
-      "Inspirada"
+      "Inspirada",
+      "Interesada",
+      "Fascinada",
+      "Cautivada",
+      "Intrigada",
+      "Encantada",
+      "Estimulada",
+      "Involucrada",
+      "Alerta",
+      "Deslumbrada",
+      "Maravillada",
+      "Admirada",
+      "Sorprendida"
     ]
   }
 };
