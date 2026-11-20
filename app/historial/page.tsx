@@ -212,7 +212,7 @@ export default function HistorialPage() {
     <div className="min-h-screen bg-slate-100 dark:bg-slate-900 p-2 transition-colors">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-4">
-          <Link href="/">
+          <Link href="/?bienvenida=1">
             <Button
               variant="ghost"
               className="text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-slate-800"

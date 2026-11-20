@@ -23,7 +23,7 @@ export default function PWARegister() {
     }
     // Registrar Service Worker (solo en producción)
     else if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
+      const registrar = () => {
         navigator.serviceWorker.register('/sw.js')
           .then((registration) => {
             console.log('SW registrado con éxito: ', registration);
@@ -31,7 +31,13 @@ export default function PWARegister() {
           .catch((registrationError) => {
             console.log('SW falló al registrarse: ', registrationError);
           });
-      });
+      };
+      // Si la página ya terminó de cargar (ej. al llegar desde otra pantalla), registrar de inmediato
+      if (document.readyState === 'complete') {
+        registrar();
+      } else {
+        window.addEventListener('load', registrar);
+      }
     }
 
     // Capturar evento de instalación
@@ -78,7 +84,7 @@ export default function PWARegister() {
   if (!showInstallBanner) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-4 mx-auto max-w-sm">
+    <div className="fixed bottom-20 left-4 right-4 z-50 bg-white border border-gray-200 rounded-lg shadow-lg p-4 mx-auto max-w-sm">
       <div className="flex items-start justify-between">
         <div className="flex-1">
           <h3 className="text-sm font-semibold text-gray-900 mb-1">

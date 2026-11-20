@@ -1,11 +1,12 @@
-// Sube el número de versión cada vez que cambies la estrategia de caché
-const CACHE_NAME = 'mi-conexion-interna-v22';
-const STATIC_CACHE_NAME = 'static-v22';
+// Sube el número de versión cada vez que cambies la estrategia de caché o agregues pantallas
+const CACHE_NAME = 'mi-conexion-interna-v23';
+const STATIC_CACHE_NAME = 'static-v23';
 
 // URLs principales para cachear
 const urlsToCache = [
   '/',
   '/dashboard',
+  '/historial',
   '/manifest.json',
   // No incluir archivos de Next.js aquí - se manejan automáticamente
 ];

@@ -7,8 +7,11 @@ import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { ChevronDown, Search, X, Download, Share2 } from "lucide-react";
+import { ChevronDown, Search, X, Download, Share2, Home, History as HistoryIcon } from "lucide-react";
 import html2canvas from "html2canvas";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import PWARegister from "@/components/pwa-register";
 
 import { feelings as feelingsHombres } from "@/lib/feelings-hombres";
 import { feelings as feelingsMujeres } from "@/lib/feelings-mujeres";
@@ -20,15 +23,40 @@ const steps = ["Observación", "Sentimientos", "Necesidades", "Petición", "Resu
 
 // ─── Hook: género ─────────────────────────────────────────────────────────────
 function useGenderData() {
+  const router = useRouter();
   const [gender, setGender] = useState<"hombre" | "mujer">("hombre");
+  // "listo" evita mostrar por un instante las listas del perfil equivocado
+  const [listo, setListo] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("cnv_gender");
-    if (saved === "mujer") setGender("mujer");
-  }, []);
+    let saved: string | null = null;
+    try {
+      saved = localStorage.getItem("cnv_gender");
+    } catch {
+      saved = null;
+    }
+    if (saved === "hombre" || saved === "mujer") {
+      setGender(saved);
+      setListo(true);
+    } else {
+      // Sin perfil elegido: se vuelve a la pantalla de bienvenida para elegirlo
+      router.replace("/");
+    }
+  }, [router]);
+
+  const cambiarGenero = (g: "hombre" | "mujer") => {
+    setGender(g);
+    try {
+      localStorage.setItem("cnv_gender", g);
+    } catch {
+      // se ignora si el almacenamiento está bloqueado
+    }
+  };
 
   return {
     gender,
+    listo,
+    cambiarGenero,
     feelings: gender === "mujer" ? feelingsMujeres : feelingsHombres,
     needs: gender === "mujer" ? needsMujeres : needsHombres,
   };
@@ -703,10 +731,11 @@ export default function DashboardPage() {
   });
 
   // Un id por cada proceso CNV; cambia solo al finalizar para empezar uno nuevo
-  const [sessionId, setSessionId] = useState(() => nuevoId());
+  const [sessionId] = useState(() => nuevoId());
 
+  const router = useRouter();
   const { toast } = useToast();
-  const { feelings, needs } = useGenderData();
+  const { gender, listo, cambiarGenero, feelings, needs } = useGenderData();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -731,9 +760,8 @@ export default function DashboardPage() {
   const handleNext = () => {
     if (!validateStep()) return;
     if (currentStep === steps.length - 1) {
-      setFormData({ observation: "", feelings: [], needs: [], requests: [] });
-      setSessionId(nuevoId());
-      setCurrentStep(0);
+      // La sesión ya quedó guardada al llegar al Resumen: se lleva al usuario al historial
+      router.push("/historial");
     } else {
       setCurrentStep((p) => p + 1);
     }
@@ -778,11 +806,71 @@ export default function DashboardPage() {
     }
   };
 
+  if (!listo) {
+    return (
+      <div className="min-h-screen bg-slate-100 dark:bg-slate-900 flex items-center justify-center">
+        <p className="text-gray-500 dark:text-gray-400 animate-pulse">Cargando…</p>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-slate-100 dark:bg-slate-900 p-0 transition-colors">
+      {/* Barra superior: Inicio · Perfil · Historial */}
+      <div className="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-gray-200 dark:border-slate-700 px-2 py-2">
+        <div className="max-w-4xl mx-auto flex items-center justify-between gap-2">
+          <Link href="/?bienvenida=1" aria-label="Inicio">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-slate-800"
+            >
+              <Home className="w-5 h-5" />
+            </Button>
+          </Link>
+
+          <div
+            role="group"
+            aria-label="Perfil"
+            className="flex rounded-full border border-gray-300 dark:border-slate-600 overflow-hidden text-sm font-medium"
+          >
+            <button
+              onClick={() => cambiarGenero("hombre")}
+              className={`px-3 py-1.5 transition-colors ${
+                gender === "hombre"
+                  ? "bg-blue-500 text-white"
+                  : "bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-200"
+              }`}
+            >
+              Hombre
+            </button>
+            <button
+              onClick={() => cambiarGenero("mujer")}
+              className={`px-3 py-1.5 transition-colors ${
+                gender === "mujer"
+                  ? "bg-purple-500 text-white"
+                  : "bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-200"
+              }`}
+            >
+              Mujer
+            </button>
+          </div>
+
+          <Link href="/historial">
+            <Button
+              variant="ghost"
+              className="text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-slate-800 px-2"
+            >
+              <HistoryIcon className="w-5 h-5 mr-1.5" />
+              Historial
+            </Button>
+          </Link>
+        </div>
+      </div>
+
       <div className="max-w-4xl mx-auto">
         {/* Indicador de pasos */}
-        <div className="flex justify-between mb-8">
+        <div className="flex justify-between mt-3 mb-8">
           {steps.map((step, index) => (
             <div
               key={step}
@@ -828,6 +916,8 @@ export default function DashboardPage() {
           </Button>
         </div>
       </div>
+
+      <PWARegister />
     </div>
   );
 }

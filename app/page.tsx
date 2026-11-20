@@ -5,27 +5,56 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import PWARegister from "@/components/pwa-register";
 import { obtenerHistorial } from "@/lib/history";
 
 type Gender = "hombre" | "mujer";
 
 export default function Home() {
+  const router = useRouter();
   const [gender, setGender] = useState<Gender | null>(null);
   const [totalSesiones, setTotalSesiones] = useState(0);
+  // "listo" evita que la pantalla de bienvenida parpadee antes de saltar al dashboard
+  const [listo, setListo] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("cnv_gender") as Gender | null;
-    if (saved === "hombre" || saved === "mujer") {
-      setGender(saved);
+    let saved: Gender | null = null;
+    try {
+      saved = localStorage.getItem("cnv_gender") as Gender | null;
+    } catch {
+      saved = null;
     }
+    const tienePerfil = saved === "hombre" || saved === "mujer";
+    // "/?bienvenida=1" (botón Inicio) permite ver esta pantalla aunque ya haya perfil
+    const verBienvenida = new URLSearchParams(window.location.search).has("bienvenida");
+
+    if (tienePerfil && !verBienvenida) {
+      router.replace("/dashboard");
+      return;
+    }
+
+    if (tienePerfil) setGender(saved);
     setTotalSesiones(obtenerHistorial().length);
-  }, []);
+    setListo(true);
+  }, [router]);
 
   const selectGender = (g: Gender) => {
     setGender(g);
-    localStorage.setItem("cnv_gender", g);
+    try {
+      localStorage.setItem("cnv_gender", g);
+    } catch {
+      // se ignora si el almacenamiento está bloqueado
+    }
   };
+
+  if (!listo) {
+    return (
+      <main className="min-h-screen bg-slate-100 dark:bg-slate-900 flex items-center justify-center">
+        <p className="text-gray-500 dark:text-gray-400 animate-pulse">Cargando…</p>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen bg-slate-100 dark:bg-slate-900 flex flex-col items-center justify-center p-4 transition-colors">
