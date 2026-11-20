@@ -14,6 +14,7 @@ import { feelings as feelingsHombres } from "@/lib/feelings-hombres";
 import { feelings as feelingsMujeres } from "@/lib/feelings-mujeres";
 import { needs as needsHombres } from "@/lib/needs-hombres";
 import { needs as needsMujeres } from "@/lib/needs-mujeres";
+import { guardarSesion, obtenerSesion, nuevoId } from "@/lib/history";
 
 const steps = ["Observación", "Sentimientos", "Necesidades", "Petición", "Resumen"];
 
@@ -48,7 +49,7 @@ function ScrollToTopButton() {
   return (
     <Button
       onClick={() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" })}
-      className="fixed bottom-4 right-4 rounded-full w-12 h-12 bg-blue-500 hover:bg-blue-600 shadow-lg flex items-center justify-center z-50"
+      className="fixed bottom-24 right-4 rounded-full w-12 h-12 bg-blue-500 hover:bg-blue-600 shadow-lg flex items-center justify-center z-50"
       size="icon"
     >
       <ChevronDown className="h-6 w-6" />
@@ -65,9 +66,9 @@ function ObservationStep({
   onChange: (value: string) => void;
 }) {
   return (
-    <Card className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Observación</h2>
-      <p className="text-gray-600 mb-4">
+    <Card className="p-2 dark:bg-slate-800 dark:border-slate-700">
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Observación</h2>
+      <p className="text-gray-600 dark:text-gray-400 mb-4">
         ¿Qué acontecimiento desencadena tu vivencia? Identifica de manera objetiva
         qué viste, escuchaste o recordaste que activó tu reacción.
       </p>
@@ -131,16 +132,16 @@ function FeelingsStep({
   );
 
   return (
-    <Card className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Sentimientos</h2>
-      <p className="text-gray-600 mb-6">
-        ¿Qué emociones o sentimientos son estimulados en ti? Reconoce y nombra
+    <Card className="p-2 dark:bg-slate-800 dark:border-slate-700">
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Sentimientos</h2>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">
+        ¿Qué emociones o sentimientos son activados en ti? Reconoce y nombra
         cómo te sientes, sin juzgarte.
       </p>
 
       <div className="mb-6 relative">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" />
           <Input
             type="text"
             placeholder="Buscar sentimientos... (ej: tristeza, alegría, frustración)"
@@ -151,14 +152,14 @@ function FeelingsStep({
           {searchTerm && (
             <button
               onClick={() => setSearchTerm("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:text-gray-400"
             >
               <X className="h-4 w-4" />
             </button>
           )}
         </div>
         {searchTerm && (
-          <div className="mt-2 text-sm text-gray-500">
+          <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
             {totalFiltered > 0
               ? `${totalFiltered} sentimiento${totalFiltered !== 1 ? "s" : ""} encontrado${totalFiltered !== 1 ? "s" : ""}`
               : "No se encontraron sentimientos"}
@@ -168,7 +169,7 @@ function FeelingsStep({
 
       {selectedFeelings.length > 0 && (
         <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3">
+          <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
             Sentimientos seleccionados ({selectedFeelings.length})
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -176,7 +177,7 @@ function FeelingsStep({
               <span
                 key={f}
                 onClick={() => toggleFeeling(f)}
-                className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-blue-200 transition-colors"
+                className="bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-blue-200 transition-colors"
               >
                 {f} ×
               </span>
@@ -186,16 +187,16 @@ function FeelingsStep({
       )}
 
       {Object.keys(filteredFeelings).length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-gray-500 dark:text-gray-400">
           No se encontraron sentimientos que coincidan con "{searchTerm}"
         </div>
       ) : (
         Object.entries(filteredFeelings).map(([mainCat, cats]) => (
           <div key={mainCat} className="mb-8">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">{mainCat}</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">{mainCat}</h3>
             {Object.entries(cats as Record<string, string[]>).map(([cat, list]) => (
               <div key={cat} className="feeling-category mb-6">
-                <h4 className="text-lg font-medium mb-3 text-gray-700">{cat}</h4>
+                <h4 className="text-lg font-medium mb-3 text-gray-700 dark:text-gray-300">{cat}</h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                   {list.map((feeling) => (
                     <div
@@ -203,8 +204,8 @@ function FeelingsStep({
                       onClick={() => toggleFeeling(feeling)}
                       className={`cursor-pointer px-4 py-2 rounded-full text-center text-sm font-medium transition-all duration-200 transform hover:scale-105 ${
                         selectedFeelings.includes(feeling)
-                          ? "bg-blue-100 text-blue-800 shadow-md border border-blue-400 scale-105"
-                          : "bg-white text-gray-700 shadow-sm hover:shadow-md border border-gray-300 hover:border-blue-300"
+                          ? "bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 shadow-md border border-blue-400 scale-105"
+                          : "bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-200 shadow-sm hover:shadow-md border border-gray-300 dark:border-slate-600 hover:border-blue-300"
                       }`}
                     >
                       {feeling}
@@ -265,16 +266,16 @@ function NeedsStep({
   const totalFiltered = filteredNeeds.reduce((t, cat) => t + cat.items.length, 0);
 
   return (
-    <Card className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Necesidades</h2>
-      <p className="text-gray-600 mb-6">
+    <Card className="p-2 dark:bg-slate-800 dark:border-slate-700">
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Necesidades</h2>
+      <p className="text-gray-600 dark:text-gray-400 mb-6">
         ¿Qué necesidades activan estos sentimientos? Conecta con la necesidad
         profunda que hay detrás de tu emoción.
       </p>
 
       <div className="mb-6 relative">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" />
           <Input
             type="text"
             placeholder="Buscar necesidades... (ej: comprensión, autonomía, conexión)"
@@ -285,14 +286,14 @@ function NeedsStep({
           {searchTerm && (
             <button
               onClick={() => setSearchTerm("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:text-gray-400"
             >
               <X className="h-4 w-4" />
             </button>
           )}
         </div>
         {searchTerm && (
-          <div className="mt-2 text-sm text-gray-500">
+          <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
             {totalFiltered > 0
               ? `${totalFiltered} necesidad${totalFiltered !== 1 ? "es" : ""} encontrada${totalFiltered !== 1 ? "s" : ""}`
               : "No se encontraron necesidades"}
@@ -302,7 +303,7 @@ function NeedsStep({
 
       {selectedNeeds.length > 0 && (
         <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3">
+          <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
             Necesidades seleccionadas ({selectedNeeds.length})
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -310,7 +311,7 @@ function NeedsStep({
               <span
                 key={n}
                 onClick={() => toggleNeed(n)}
-                className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-green-200 transition-colors"
+                className="bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 px-3 py-1 rounded-full text-sm font-medium cursor-pointer hover:bg-green-200 transition-colors"
               >
                 {n} ×
               </span>
@@ -320,13 +321,13 @@ function NeedsStep({
       )}
 
       {filteredNeeds.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-gray-500 dark:text-gray-400">
           No se encontraron necesidades que coincidan con "{searchTerm}"
         </div>
       ) : (
         filteredNeeds.map((cat) => (
           <div key={cat.category} className="feeling-category mb-6">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">{cat.category}</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">{cat.category}</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {cat.items.map((need) => (
                 <div
@@ -334,8 +335,8 @@ function NeedsStep({
                   onClick={() => toggleNeed(need)}
                   className={`cursor-pointer px-4 py-2 rounded-full text-center text-sm font-medium transition-all duration-200 transform hover:scale-105 ${
                     selectedNeeds.includes(need)
-                      ? "bg-green-100 text-green-800 shadow-md border border-green-400 scale-105"
-                      : "bg-white text-gray-700 shadow-sm hover:shadow-md border border-gray-300 hover:border-green-300"
+                      ? "bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 shadow-md border border-green-400 scale-105"
+                      : "bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-200 shadow-sm hover:shadow-md border border-gray-300 dark:border-slate-600 hover:border-green-300"
                   }`}
                 >
                   {need}
@@ -368,9 +369,9 @@ function RequestStep({
   };
 
   return (
-    <Card className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Petición</h2>
-      <p className="text-gray-600 mb-4">
+    <Card className="p-2 dark:bg-slate-800 dark:border-slate-700">
+      <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Petición</h2>
+      <p className="text-gray-600 dark:text-gray-400 mb-4">
         ¿Qué acciones o estrategias específicas quisiera que se realizaran ahora?
         Identifica qué podrías pedirte a ti mismo o a otros para cuidar de tu necesidad.
       </p>
@@ -381,17 +382,17 @@ function RequestStep({
           placeholder="Escribe una petición o estrategia concreta y realizable..."
           className="mb-2"
         />
-        <Button onClick={addRequest}>Agregar Petición o Estrategia</Button>
+        <Button onClick={addRequest} className="bg-blue-600 hover:bg-blue-700 text-white">Agregar Petición o Estrategia</Button>
       </div>
       <div className="space-y-2">
         {requests.map((request, index) => (
-          <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-            <span>{request}</span>
+          <div key={index} className="flex items-center justify-between p-2 bg-gray-50 dark:bg-slate-700/50 rounded">
+            <span className="text-gray-900 dark:text-gray-100">{request}</span>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => onChange(requests.filter((_, i) => i !== index))}
-              className="text-red-500"
+              className="text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40"
             >
               Eliminar
             </Button>
@@ -403,17 +404,33 @@ function RequestStep({
 }
 
 // ─── Paso 5: Resumen ──────────────────────────────────────────────────────────
-function SummaryStep({ formData }: { formData: any }) {
+function SummaryStep({ formData, sessionId }: { formData: any; sessionId: string }) {
   const summaryRef = useRef<HTMLDivElement>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [isGeneratingAI, setIsGeneratingAI] = useState(false);
-  const [mensajeCNV, setMensajeCNV] = useState("");
+  // Si el usuario volvió atrás y regresó, recupera el mensaje ya generado de esta sesión
+  const [mensajeCNV, setMensajeCNV] = useState(() => obtenerSesion(sessionId)?.mensaje ?? "");
   const { toast } = useToast();
+
+  // ── Guardado automático en el historial ──────────────────────────────────
+  // Se guarda al entrar al Resumen y se actualiza si se genera/regenera el mensaje.
+  // Usa el mismo id, así que nunca se duplica.
+  useEffect(() => {
+    const existente = obtenerSesion(sessionId);
+    guardarSesion({
+      id: sessionId,
+      fecha: existente?.fecha ?? new Date().toISOString(),
+      observation: formData.observation,
+      feelings: formData.feelings,
+      needs: formData.needs,
+      requests: formData.requests,
+      mensaje: mensajeCNV,
+    });
+  }, [sessionId, formData, mensajeCNV]);
 
   // ── Generar mensaje con IA ───────────────────────────────────────────────
   const handleGenerarMensaje = async () => {
     setIsGeneratingAI(true);
-    setMensajeCNV("");
     try {
       const res = await fetch("/api/generar-cnv", {
         method: "POST",
@@ -483,26 +500,102 @@ function SummaryStep({ formData }: { formData: any }) {
     }
   };
 
+  const fecha = new Date().toLocaleDateString("es-ES", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
-    <Card className="p-6">
-      {/* Contenido que se convierte en imagen */}
-      <div ref={summaryRef} className="bg-white p-6 rounded-lg">
+    <Card className="p-0 dark:bg-slate-800 dark:border-slate-700">
+      {/* Versión visible en pantalla — respeta el modo oscuro para no encandilar */}
+      <div className="bg-white dark:bg-slate-900 p-2 rounded-lg">
         {/* Header */}
         <div className="text-center mb-6 pb-4 border-b-2 border-blue-500">
-          <h1 className="text-2xl font-bold text-blue-600 mb-1">Mi Conexión Interna</h1>
-          <p className="text-sm text-gray-600">Resumen de tu proceso CNV</p>
-          <p className="text-xs text-gray-500 mt-1">
-            {new Date().toLocaleDateString("es-ES", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
+          <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">Mi Conexión Interna</h1>
+          <p className="text-sm text-gray-600 dark:text-gray-400">Resumen de tu proceso CNV</p>
+          <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">{fecha}</p>
         </div>
 
         <div className="space-y-4">
           {/* Observación */}
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200">Observación</h3>
+            <p className="text-gray-700 dark:text-gray-300 text-sm leading-snug bg-gray-50 dark:bg-slate-800 p-3 rounded">
+              {formData.observation}
+            </p>
+          </div>
+
+          {/* Sentimientos */}
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200">Sentimientos</h3>
+            <div className="flex flex-wrap gap-1.5">
+              {formData.feelings.map((f: string) => (
+                <span key={f} className="bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 px-2 py-1 rounded-full text-xs font-medium">
+                  {f}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Necesidades */}
+          <div>
+            <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200">Necesidades</h3>
+            <div className="flex flex-wrap gap-1.5">
+              {formData.needs.map((n: string) => (
+                <span key={n} className="bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 px-2 py-1 rounded-full text-xs font-medium">
+                  {n}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Peticiones */}
+          {formData.requests.length > 0 && (
+            <div>
+              <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200">Peticiones/Estrategias</h3>
+              <ul className="space-y-1.5">
+                {formData.requests.map((r: string, i: number) => (
+                  <li key={i} className="flex items-start gap-2 text-gray-700 dark:text-gray-300 text-sm bg-gray-50 dark:bg-slate-800 p-2 rounded">
+                    <span className="text-blue-500 dark:text-blue-400 font-bold">•</span>
+                    <span className="flex-1">{r}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Mensaje CNV generado con IA — solo aparece si existe */}
+          {mensajeCNV && (
+            <div className="mt-2 p-4 bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800 rounded-lg">
+              <h3 className="text-sm font-semibold text-purple-700 dark:text-purple-300 mb-2">✨ Mi mensaje CNV</h3>
+              <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed italic">"{mensajeCNV}"</p>
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div className="mt-6 pt-3 text-center text-xs text-gray-500 dark:text-gray-500 border-t border-gray-300 dark:border-slate-700">
+          <p>Comunicación No Violenta - Marshall Rosenberg</p>
+        </div>
+      </div>
+
+      {/* Versión oculta, siempre en claro — es la que se usa para generar la imagen a descargar/compartir,
+          para que el PNG sea legible sin importar el tema de pantalla */}
+      <div
+        ref={summaryRef}
+        style={{ position: "absolute", left: "-9999px", top: 0 }}
+        className="bg-white p-6 rounded-lg w-[500px]"
+        aria-hidden="true"
+      >
+        <div className="text-center mb-6 pb-4 border-b-2 border-blue-500">
+          <h1 className="text-2xl font-bold text-blue-600 mb-1">Mi Conexión Interna</h1>
+          <p className="text-sm text-gray-600">Resumen de tu proceso CNV</p>
+          <p className="text-xs text-gray-500 mt-1">{fecha}</p>
+        </div>
+
+        <div className="space-y-4">
           <div>
             <h3 className="text-lg font-semibold mb-2 text-gray-800">Observación</h3>
             <p className="text-gray-700 text-sm leading-snug bg-gray-50 p-3 rounded">
@@ -510,7 +603,6 @@ function SummaryStep({ formData }: { formData: any }) {
             </p>
           </div>
 
-          {/* Sentimientos */}
           <div>
             <h3 className="text-lg font-semibold mb-2 text-gray-800">Sentimientos</h3>
             <div className="flex flex-wrap gap-1.5">
@@ -522,7 +614,6 @@ function SummaryStep({ formData }: { formData: any }) {
             </div>
           </div>
 
-          {/* Necesidades */}
           <div>
             <h3 className="text-lg font-semibold mb-2 text-gray-800">Necesidades</h3>
             <div className="flex flex-wrap gap-1.5">
@@ -534,7 +625,6 @@ function SummaryStep({ formData }: { formData: any }) {
             </div>
           </div>
 
-          {/* Peticiones */}
           {formData.requests.length > 0 && (
             <div>
               <h3 className="text-lg font-semibold mb-2 text-gray-800">Peticiones/Estrategias</h3>
@@ -549,7 +639,6 @@ function SummaryStep({ formData }: { formData: any }) {
             </div>
           )}
 
-          {/* Mensaje CNV generado con IA — solo aparece si existe */}
           {mensajeCNV && (
             <div className="mt-2 p-4 bg-purple-50 border border-purple-200 rounded-lg">
               <h3 className="text-sm font-semibold text-purple-700 mb-2">✨ Mi mensaje CNV</h3>
@@ -558,7 +647,6 @@ function SummaryStep({ formData }: { formData: any }) {
           )}
         </div>
 
-        {/* Footer */}
         <div className="mt-6 pt-3 text-center text-xs text-gray-500 border-t border-gray-300">
           <p>Comunicación No Violenta - Marshall Rosenberg</p>
         </div>
@@ -575,7 +663,7 @@ function SummaryStep({ formData }: { formData: any }) {
           {isGeneratingAI ? (
             <span className="animate-pulse">Generando mensaje...</span>
           ) : (
-            <>{mensajeCNV ? "✨ Regenerar mensaje CNV" : "✨ Generar mensaje CNV"}</>
+            <>{mensajeCNV ? "✨ Regenerar con IA" : "✨ Generar mensaje con IA"}</>
           )}
         </Button>
 
@@ -595,6 +683,10 @@ function SummaryStep({ formData }: { formData: any }) {
           <Share2 className="w-5 h-5" />
           Compartir por WhatsApp
         </Button>
+
+        <p className="text-xs text-center text-gray-500 dark:text-gray-400 pt-1">
+          ✓ Guardado en tu historial (solo en este dispositivo)
+        </p>
       </div>
     </Card>
   );
@@ -609,6 +701,9 @@ export default function DashboardPage() {
     needs: [] as string[],
     requests: [] as string[],
   });
+
+  // Un id por cada proceso CNV; cambia solo al finalizar para empezar uno nuevo
+  const [sessionId, setSessionId] = useState(() => nuevoId());
 
   const { toast } = useToast();
   const { feelings, needs } = useGenderData();
@@ -637,6 +732,7 @@ export default function DashboardPage() {
     if (!validateStep()) return;
     if (currentStep === steps.length - 1) {
       setFormData({ observation: "", feelings: [], needs: [], requests: [] });
+      setSessionId(nuevoId());
       setCurrentStep(0);
     } else {
       setCurrentStep((p) => p + 1);
@@ -676,14 +772,14 @@ export default function DashboardPage() {
           />
         );
       case 4:
-        return <SummaryStep formData={formData} />;
+        return <SummaryStep formData={formData} sessionId={sessionId} />;
       default:
         return null;
     }
   };
 
   return (
-    <div className="min-h-screen gradient-bg p-4">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-900 p-0 transition-colors">
       <div className="max-w-4xl mx-auto">
         {/* Indicador de pasos */}
         <div className="flex justify-between mb-8">
@@ -691,7 +787,7 @@ export default function DashboardPage() {
             <div
               key={step}
               className={`text-sm ${
-                index === currentStep ? "text-blue-600 font-bold" : "text-gray-400"
+                index === currentStep ? "text-blue-600 dark:text-blue-400 font-bold" : "text-gray-400 dark:text-gray-500"
               }`}
             >
               {step}
@@ -711,13 +807,23 @@ export default function DashboardPage() {
           </motion.div>
         </AnimatePresence>
 
-        <div className="flex justify-center gap-4 mt-8">
+        {/* Espacio para que el contenido no quede tapado por la barra fija de abajo */}
+        <div className="h-20" />
+      </div>
+
+      {/* Barra de navegación fija — siempre visible, incluso con listas largas de Sentimientos/Necesidades */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-t border-gray-200 dark:border-slate-700 p-2">
+        <div className="max-w-4xl mx-auto flex justify-center gap-2">
           {currentStep > 0 && (
-            <Button onClick={() => setCurrentStep((p) => p - 1)} variant="outline">
+            <Button
+              onClick={() => setCurrentStep((p) => p - 1)}
+              variant="outline"
+              className="bg-transparent border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800"
+            >
               Atrás
             </Button>
           )}
-          <Button onClick={handleNext}>
+          <Button onClick={handleNext} className="bg-blue-600 hover:bg-blue-700 text-white">
             {currentStep === steps.length - 1 ? "Finalizar" : "Siguiente"}
           </Button>
         </div>
