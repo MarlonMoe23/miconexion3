@@ -104,6 +104,7 @@ function ObservationStep({
         placeholder="Ejemplo: Cuando veo que mi amigo no responde a mi mensaje..."
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        maxLength={1000}
         className="min-h-[150px]"
       />
     </Card>
@@ -408,6 +409,7 @@ function RequestStep({
           value={newRequest}
           onChange={(e) => setNewRequest(e.target.value)}
           placeholder="Escribe una petición o estrategia concreta y realizable..."
+          maxLength={300}
           className="mb-2"
         />
         <Button onClick={addRequest} className="bg-blue-600 hover:bg-blue-700 text-white">Agregar Petición o Estrategia</Button>
@@ -471,13 +473,21 @@ function SummaryStep({ formData, sessionId }: { formData: any; sessionId: string
         }),
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Error desconocido");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        // Mensaje en español que viene del servidor (ej: límite de uso alcanzado)
+        const mensajeServidor =
+          typeof data.error === "string" ? data.error : "No se pudo generar el mensaje. Intenta de nuevo.";
+        throw Object.assign(new Error(mensajeServidor), { esMensajeAmable: true });
+      }
       setMensajeCNV(data.mensaje);
-    } catch {
+    } catch (error) {
+      const amable = (error as { esMensajeAmable?: boolean })?.esMensajeAmable;
       toast({
         title: "Error",
-        description: "No se pudo generar el mensaje. Intenta de nuevo.",
+        description: amable
+          ? (error as Error).message
+          : "No se pudo generar el mensaje. Intenta de nuevo.",
         variant: "destructive",
       });
     } finally {
