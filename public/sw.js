@@ -1,5 +1,6 @@
-const CACHE_NAME = 'mi-conexion-interna-v21';
-const STATIC_CACHE_NAME = 'static-v21';
+// Sube el número de versión cada vez que cambies la estrategia de caché
+const CACHE_NAME = 'mi-conexion-interna-v22';
+const STATIC_CACHE_NAME = 'static-v22';
 
 // URLs principales para cachear
 const urlsToCache = [
@@ -65,37 +66,24 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Estrategia para páginas HTML
+  // Estrategia para páginas HTML: RED PRIMERO (siempre la versión más nueva).
+  // La caché solo se usa si no hay internet.
   if (request.destination === 'document') {
     event.respondWith(
-      caches.match(request).then((cachedResponse) => {
-        if (cachedResponse) {
-          // Servir desde caché pero intentar actualizar en background
-          fetch(request).then((response) => {
-            if (response.status === 200) {
-              caches.open(CACHE_NAME).then((cache) => {
-                cache.put(request, response.clone());
-              });
-            }
-          }).catch(() => {
-            // Falló la actualización, no hacer nada
-          });
-          return cachedResponse;
-        }
-
-        // No está en caché, intentar red
-        return fetch(request).then((response) => {
+      fetch(request)
+        .then((response) => {
           if (response.status === 200) {
+            const copia = response.clone();
             caches.open(CACHE_NAME).then((cache) => {
-              cache.put(request, response.clone());
+              cache.put(request, copia);
             });
           }
           return response;
-        }).catch(() => {
-          // Si falla completamente, devolver página principal si existe
-          return caches.match('/');
-        });
-      })
+        })
+        .catch(() => {
+          // Sin conexión: página guardada, o la principal como último recurso
+          return caches.match(request).then((cached) => cached || caches.match('/'));
+        })
     );
     return;
   }
