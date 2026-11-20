@@ -6,17 +6,20 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import PWARegister from "@/components/pwa-register";
+import { obtenerHistorial } from "@/lib/history";
 
 type Gender = "hombre" | "mujer";
 
 export default function Home() {
   const [gender, setGender] = useState<Gender | null>(null);
+  const [totalSesiones, setTotalSesiones] = useState(0);
 
   useEffect(() => {
     const saved = localStorage.getItem("cnv_gender") as Gender | null;
     if (saved === "hombre" || saved === "mujer") {
       setGender(saved);
     }
+    setTotalSesiones(obtenerHistorial().length);
   }, []);
 
   const selectGender = (g: Gender) => {
@@ -99,6 +102,17 @@ export default function Home() {
               Selecciona un perfil para continuar
             </p>
           )}
+
+          <div className="mt-4">
+            <Link href="/historial">
+              <Button
+                variant="outline"
+                className="w-full md:w-auto bg-transparent border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700"
+              >
+                Mi historial{totalSesiones > 0 ? ` (${totalSesiones})` : ""}
+              </Button>
+            </Link>
+          </div>
         </Card>
 
         <motion.div
